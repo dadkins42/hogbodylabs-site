@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HogBody Labs — Apps for People Who Make Things</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #111113;
+      --bg2:      #18181b;
+      --bg3:      #222227;
+      --white:    #f5f5f5;
+      --muted:    #999;
+      --accent:   #ff5e1a;
+      --accent2:  #ff8c00;
+      --border:   rgba(255,255,255,0.09);
+      --radius:   14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(12,12,14,0.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo-mark {
+      width: 40px;
+      height: 40px;
+    }
+
+    .nav-logo span {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.3px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 140px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 900px; height: 600px;
+      background: radial-gradient(ellipse, rgba(255,94,26,0.2) 0%, rgba(255,140,0,0.08) 40%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-logo {
+      width: 120px;
+      margin-bottom: 40px;
+      opacity: 0.95;
+    }
+
+    .hero-eyebrow {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(44px, 7vw, 84px);
+      font-weight: 900;
+      letter-spacing: -3px;
+      line-height: 1.0;
+      margin-bottom: 24px;
+      background: linear-gradient(to top, #ff8c00 0%, #ffffff 60%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+    }
+
+    .hero p {
+      font-size: clamp(17px, 2vw, 20px);
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 48px;
+      line-height: 1.6;
+    }
+
+    .hero-scroll {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--muted), transparent);
+    }
+
+    /* APPS SECTION */
+    .apps {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 80px 24px 120px;
+    }
+
+    .section-eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .apps-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .apps-header h2 {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+    }
+
+    .app-card {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 28px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-top: 2px solid rgba(255,94,26,0.4);
+      border-radius: 20px;
+      padding: 32px 36px;
+      text-decoration: none;
+      transition: all 0.25s;
+      margin-bottom: 16px;
+    }
+
+    .app-card:hover {
+      border-color: rgba(255,94,26,0.35);
+      background: var(--bg3);
+      transform: translateY(-2px);
+    }
+
+    .app-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      flex-shrink: 0;
+      background: var(--bg3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+    }
+
+    .app-icon img {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+    }
+
+    .app-info h3 {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+      color: var(--white);
+    }
+
+    .app-info p {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 500px;
+      line-height: 1.5;
+    }
+
+    .app-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .app-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 50px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .app-tag.highlight {
+      background: rgba(255,94,26,0.12);
+      border-color: rgba(255,94,26,0.3);
+      color: var(--accent);
+    }
+
+    .app-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn-appstore {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      color: #000;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 10px 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .btn-appstore:hover {
+      background: #fff;
+      transform: translateY(-1px);
+    }
+
+    .btn-learn {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .btn-learn:hover { color: var(--white); }
+
+    /* COMING SOON CARD */
+    .app-card.coming-soon {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .coming-soon-badge {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 50px;
+    }
+
+    /* ABOUT */
+    .about {
+      border-top: 1px solid var(--border);
+      padding: 80px 24px;
+    }
+
+    .about-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-inner h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+    }
+
+    .about-inner p {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .about-values {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+      text-align: left;
+    }
+
+    .value-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .value-card h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--accent);
+    }
+
+    .value-card p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-logo img {
+      width: 28px;
+      height: 28px;
+    }
+
+    .footer-logo span {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    footer p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+
+      .app-card {
+        grid-template-columns: auto 1fr;
+        gap: 20px;
+        padding: 24px;
+      }
+
+      .app-cta {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .about-values {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="hogbodylabs-badge.svg" alt="HogBody Labs" style="width:36px;height:36px;object-fit:contain;filter:brightness(0) saturate(100%) invert(65%) sepia(80%) saturate(600%) hue-rotate(345deg) brightness(105%);" />
+    <span>HogBody Labs</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#apps">Apps</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <img src="hogbodylabs.svg" alt="HogBody Labs" class="hero-logo" style="filter:brightness(0) saturate(100%) invert(65%) sepia(80%) saturate(600%) hue-rotate(345deg) brightness(105%);" />
+
+  <p class="hero-eyebrow">HogBody Labs</p>
+  <h1>Apps for people<br /><em>who make things.</em></h1>
+  <p>We build focused, well-crafted tools for musicians, creators, and anyone who takes their craft seriously.</p>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Our apps</span>
+  </div>
+</section>
+
+<!-- APPS -->
+<section class="apps" id="apps">
+  <div class="apps-header">
+    <div>
+      <p class="section-eyebrow">Our Apps</p>
+      <h2>Built with care.<br />Designed to last.</h2>
+    </div>
+  </div>
+
+  <!-- STAGEBOOK -->
+  <a href="https://stagebooktoolkit.com" class="app-card">
+    <div class="app-icon">
+      <img src="stagebook-icon.png" alt="StageBook" onerror="this.parentElement.innerHTML='🎵'" />
+    </div>
+    <div class="app-info">
+      <h3>StageBook</h3>
+      <p>The toolkit for working musicians. Lyrics, setlists, band coordination, recordings, and more — all offline, all yours.</p>
+      <div class="app-tags">
+        <span class="app-tag highlight">Available Now</span>
+        <span class="app-tag">iPhone</span>
+        <span class="app-tag">iPad</span>
+        <span class="app-tag">Mac</span>
+        <span class="app-tag">Music</span>
+      </div>
+    </div>
+    <div class="app-cta">
+      <a href="#" class="btn-appstore">🍎 App Store</a>
+      <a href="https://stagebooktoolkit.com" class="btn-learn">Learn more →</a>
+    </div>
+  </a>
+
+  <!-- MORE COMING SOON -->
+  <div class="app-card coming-soon">
+    <div class="app-icon">✦</div>
+    <div class="app-info">
+      <h3>More coming soon</h3>
+      <p>We're working on it.</p>
+    </div>
+    <div class="app-cta">
+      <span class="coming-soon-badge">Coming Soon</span>
+    </div>
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <p class="section-eyebrow">About</p>
+    <h2>Small team.<br />Big opinions about software.</h2>
+    <p>HogBody Labs is an independent app studio based in the US. We make tools we'd want to use ourselves — focused, polished, and built to respect your time and data.</p>
+    <p>No ads. No tracking. No VC money telling us what to build. Just good software.</p>
+
+    <div class="about-values">
+      <div class="value-card">
+        <h4>Offline First</h4>
+        <p>Your data lives on your device. Internet is optional, never required.</p>
+      </div>
+      <div class="value-card">
+        <h4>You Own Your Data</h4>
+        <p>Files you can read, move, and back up yourself. No lock-in.</p>
+      </div>
+      <div class="value-card">
+        <h4>Native &amp; Fast</h4>
+        <p>Built with Apple's own tools. Feels right on every device.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+<img src="hogbodylabs-badge.svg" alt="HogBody Labs" style="width:28px;height:28px;object-fit:contain;filter:brightness(0) invert(0.7);" />
+    <span>HogBody Labs</span>
+  </div>
+  <p>© 2026 HogBody Labs LLC. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="mailto:support@hogbodylabs.com">Contact</a>
+    <a href="#">Privacy Policy</a>
+    <a href="https://stagebooktoolkit.com">StageBook</a>
+  </div>
+</footer>
+
+</body>
+</html>
