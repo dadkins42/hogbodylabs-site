@@ -1,0 +1,33 @@
+name: Daily Actuals & Scoring
+
+on:
+  schedule:
+    # 2 PM UTC = ~8 AM CT (during CDT) or ~8 AM CT (during CST)
+    - cron: '0 14 * * *'
+  workflow_dispatch: # Allow manual runs
+
+jobs:
+  compute:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compute actuals and score predictions
+        run: python skeptic/scripts/collect.py actuals
+
+      - name: Commit results
+        run: |
+          git config user.name "Skeptic Bot"
+          git config user.email "bot@hogbodylabs.com"
+          git add skeptic/data/
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Actuals & scoring $(date -u +%Y-%m-%d)"
+            git pull --rebase
+            git push
+          fi

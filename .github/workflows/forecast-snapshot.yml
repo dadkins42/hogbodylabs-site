@@ -1,0 +1,38 @@
+name: Daily Forecast Snapshot
+
+on:
+  schedule:
+    # 6 PM Pacific = 2 AM UTC (during PDT) or 2 AM UTC (during PST = 1 AM UTC+1)
+    # Use 2 AM UTC to cover ~6 PM Pacific during daylight saving
+    - cron: '0 2 * * *'
+  workflow_dispatch: # Allow manual runs
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Collect forecasts for tomorrow
+        env:
+          OWM_API_KEY: ${{ secrets.OWM_API_KEY }}
+          WEATHERAPI_KEY: ${{ secrets.WEATHERAPI_KEY }}
+          PIRATE_KEY: ${{ secrets.PIRATE_KEY }}
+        run: python skeptic/scripts/collect.py forecasts
+
+      - name: Commit forecast snapshot
+        run: |
+          git config user.name "Skeptic Bot"
+          git config user.email "bot@hogbodylabs.com"
+          git add skeptic/data/
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Forecast snapshot $(date -u +%Y-%m-%d)"
+            git pull --rebase
+            git push
+          fi

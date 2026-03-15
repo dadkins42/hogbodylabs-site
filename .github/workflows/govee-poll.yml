@@ -1,0 +1,37 @@
+name: Govee Sensor Poll
+
+on:
+  schedule:
+    # Every hour at minute 5
+    - cron: '5 * * * *'
+  workflow_dispatch: # Allow manual runs
+
+jobs:
+  poll:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Poll Govee sensor
+        env:
+          GOVEE_API_KEY: ${{ secrets.GOVEE_API_KEY }}
+          GOVEE_DEVICE_MAC: ${{ secrets.GOVEE_DEVICE_MAC }}
+          GOVEE_DEVICE_SKU: ${{ secrets.GOVEE_DEVICE_SKU }}
+        run: python skeptic/scripts/collect.py govee
+
+      - name: Commit sensor reading
+        run: |
+          git config user.name "Skeptic Bot"
+          git config user.email "bot@hogbodylabs.com"
+          git add skeptic/data/
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Govee reading $(date -u +%Y-%m-%dT%H:%M)"
+            git pull --rebase
+            git push
+          fi
