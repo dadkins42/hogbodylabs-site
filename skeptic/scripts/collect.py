@@ -137,22 +137,21 @@ def poll_govee():
         return
 
     # Parse temperature from response
+    # Govee OpenAPI v2 uses "instance": "sensorTemperature" and returns °F directly
     temp_f = None
     try:
         capabilities = resp.get("payload", {}).get("capabilities", [])
         for cap in capabilities:
-            if cap.get("type") == "devices.capabilities.online":
+            instance = cap.get("instance", "")
+            if instance == "online":
                 if not cap.get("state", {}).get("value"):
                     print("  Govee device is offline.")
                     return
-            if cap.get("type") == "devices.capabilities.temperature_setting":
-                # Temperature comes in as raw value, divide by 100 for Celsius
-                raw = cap.get("state", {}).get("value", {})
-                if isinstance(raw, dict):
-                    temp_c = raw.get("currentTemperature", 0) / 100.0
-                else:
-                    temp_c = raw / 100.0
-                temp_f = temp_c * 9 / 5 + 32
+            if instance == "sensorTemperature":
+                # OpenAPI v2 returns temperature in Fahrenheit directly
+                val = cap.get("state", {}).get("value")
+                if val is not None:
+                    temp_f = float(val)
     except Exception as e:
         print(f"  Error parsing Govee response: {e}")
         print(f"  Raw response: {json.dumps(resp)[:500]}")
