@@ -7,6 +7,9 @@ on:
     - cron: '0 2 * * *'
   workflow_dispatch: # Allow manual runs
 
+permissions:
+  contents: write
+
 jobs:
   snapshot:
     runs-on: ubuntu-latest

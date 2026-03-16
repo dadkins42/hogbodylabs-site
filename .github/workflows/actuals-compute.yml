@@ -6,6 +6,9 @@ on:
     - cron: '0 14 * * *'
   workflow_dispatch: # Allow manual runs
 
+permissions:
+  contents: write
+
 jobs:
   compute:
     runs-on: ubuntu-latest
