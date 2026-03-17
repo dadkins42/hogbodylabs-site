@@ -1,0 +1,21 @@
+{
+  "location": "Sisters, OR",
+  "groundTruth": "Govee sensor",
+  "lastUpdated": "2026-03-17T17:38:56.119149+00:00",
+  "dateRange": {
+    "start": "2026-03-16",
+    "end": "2026-03-16"
+  },
+  "daysWithData": 0,
+  "scorecard": [],
+  "recentDays": [
+    {
+      "date": "2026-03-16",
+      "actualHigh": 73.8,
+      "actualLow": 38.8,
+      "numReadings": 9,
+      "groundTruth": "Govee sensor",
+      "predictions": []
+    }
+  ]
+}
