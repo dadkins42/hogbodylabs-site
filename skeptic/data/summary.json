@@ -1,65 +1,119 @@
 {
   "location": "Sisters, OR",
   "groundTruth": "Govee sensor",
-  "lastUpdated": "2026-03-30T17:13:50.904165+00:00",
+  "lastUpdated": "2026-03-31T17:17:23.727408+00:00",
   "dateRange": {
     "start": "2026-03-16",
-    "end": "2026-03-29"
+    "end": "2026-03-30"
   },
-  "daysWithData": 13,
+  "daysWithData": 14,
   "scorecard": [
     {
       "source": "MET Norway",
-      "daysTracked": 13,
-      "avgHighMiss": 2.7,
+      "daysTracked": 14,
+      "avgHighMiss": 2.9,
       "avgLowMiss": 3.8,
-      "highWithin2": 54.0,
-      "highWithin5": 92.0,
-      "lowWithin2": 38.0,
-      "lowWithin5": 69.0
+      "highWithin2": 50.0,
+      "highWithin5": 86.0,
+      "lowWithin2": 36.0,
+      "lowWithin5": 71.0
     },
     {
       "source": "Open-Meteo",
-      "daysTracked": 13,
-      "avgHighMiss": 3.3,
+      "daysTracked": 14,
+      "avgHighMiss": 3.4,
       "avgLowMiss": 4.6,
-      "highWithin2": 31.0,
-      "highWithin5": 85.0,
-      "lowWithin2": 38.0,
-      "lowWithin5": 62.0
+      "highWithin2": 29.0,
+      "highWithin5": 79.0,
+      "lowWithin2": 36.0,
+      "lowWithin5": 64.0
     },
     {
       "source": "NWS",
-      "daysTracked": 13,
-      "avgHighMiss": 2.4,
-      "avgLowMiss": 6.7,
-      "highWithin2": 54.0,
-      "highWithin5": 92.0,
-      "lowWithin2": 31.0,
-      "lowWithin5": 46.0
+      "daysTracked": 14,
+      "avgHighMiss": 2.6,
+      "avgLowMiss": 7.0,
+      "highWithin2": 50.0,
+      "highWithin5": 93.0,
+      "lowWithin2": 29.0,
+      "lowWithin5": 43.0
     },
     {
       "source": "Pirate",
-      "daysTracked": 13,
-      "avgHighMiss": 2.7,
-      "avgLowMiss": 7.2,
-      "highWithin2": 46.0,
-      "highWithin5": 92.0,
-      "lowWithin2": 15.0,
-      "lowWithin5": 38.0
+      "daysTracked": 14,
+      "avgHighMiss": 2.8,
+      "avgLowMiss": 7.3,
+      "highWithin2": 43.0,
+      "highWithin5": 93.0,
+      "lowWithin2": 14.0,
+      "lowWithin5": 36.0
     },
     {
       "source": "WeatherAPI",
-      "daysTracked": 13,
+      "daysTracked": 14,
       "avgHighMiss": 5.7,
-      "avgLowMiss": 7.4,
-      "highWithin2": 23.0,
-      "highWithin5": 46.0,
-      "lowWithin2": 8.0,
-      "lowWithin5": 31.0
+      "avgLowMiss": 7.7,
+      "highWithin2": 21.0,
+      "highWithin5": 43.0,
+      "lowWithin2": 7.0,
+      "lowWithin5": 29.0
     }
   ],
   "recentDays": [
+    {
+      "date": "2026-03-30",
+      "actualHigh": 52.9,
+      "actualLow": 34.2,
+      "numReadings": 7,
+      "groundTruth": "Govee sensor",
+      "predictions": [
+        {
+          "source": "Open-Meteo",
+          "predictedHigh": 47.4,
+          "predictedLow": 29.7,
+          "highMiss": -5.5,
+          "lowMiss": -4.5,
+          "absHighMiss": 5.5,
+          "absLowMiss": 4.5
+        },
+        {
+          "source": "NWS",
+          "predictedHigh": 48,
+          "predictedLow": 23,
+          "highMiss": -4.9,
+          "lowMiss": -11.2,
+          "absHighMiss": 4.9,
+          "absLowMiss": 11.2
+        },
+        {
+          "source": "WeatherAPI",
+          "predictedHigh": 46.9,
+          "predictedLow": 23.5,
+          "highMiss": -6.0,
+          "lowMiss": -10.7,
+          "absHighMiss": 6.0,
+          "absLowMiss": 10.7
+        },
+        {
+          "source": "Pirate",
+          "predictedHigh": 48.0,
+          "predictedLow": 26.4,
+          "highMiss": -4.9,
+          "lowMiss": -7.8,
+          "absHighMiss": 4.9,
+          "absLowMiss": 7.8
+        },
+        {
+          "source": "MET Norway",
+          "predictedHigh": 47.7,
+          "predictedLow": 30.7,
+          "highMiss": -5.2,
+          "lowMiss": -3.5,
+          "absHighMiss": 5.2,
+          "absLowMiss": 3.5
+        }
+      ]
+    },
     {
       "date": "2026-03-29",
       "actualHigh": 55.0,
@@ -761,14 +815,6 @@
           "absLowMiss": 3.4
         }
       ]
-    },
-    {
-      "date": "2026-03-16",
-      "actualHigh": 73.8,
-      "actualLow": 38.8,
-      "numReadings": 9,
-      "groundTruth": "Govee sensor",
-      "predictions": []
     }
   ]
 }
