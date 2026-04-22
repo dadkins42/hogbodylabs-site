@@ -1,0 +1,54 @@
+{
+  "date": "2026-04-21",
+  "actualHigh": 59.7,
+  "actualLow": 49.5,
+  "numReadings": 13,
+  "groundTruth": "Govee sensor",
+  "predictions": [
+    {
+      "source": "Open-Meteo",
+      "predictedHigh": 57.2,
+      "predictedLow": 43.5,
+      "highMiss": -2.5,
+      "lowMiss": -6.0,
+      "absHighMiss": 2.5,
+      "absLowMiss": 6.0
+    },
+    {
+      "source": "NWS",
+      "predictedHigh": 59,
+      "predictedLow": 38,
+      "highMiss": -0.7,
+      "lowMiss": -11.5,
+      "absHighMiss": 0.7,
+      "absLowMiss": 11.5
+    },
+    {
+      "source": "WeatherAPI",
+      "predictedHigh": 50.8,
+      "predictedLow": 41.1,
+      "highMiss": -8.9,
+      "lowMiss": -8.4,
+      "absHighMiss": 8.9,
+      "absLowMiss": 8.4
+    },
+    {
+      "source": "Pirate",
+      "predictedHigh": 56.0,
+      "predictedLow": 41.1,
+      "highMiss": -3.7,
+      "lowMiss": -8.4,
+      "absHighMiss": 3.7,
+      "absLowMiss": 8.4
+    },
+    {
+      "source": "MET Norway",
+      "predictedHigh": 61.5,
+      "predictedLow": 43.9,
+      "highMiss": 1.8,
+      "lowMiss": -5.6,
+      "absHighMiss": 1.8,
+      "absLowMiss": 5.6
+    }
+  ]
+}
