@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DropPost — Publish Your Own Blog, No Coding Required</title>
+  <title>SideFill — The Working Clipboard for Live-Sound Crews</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -32,7 +32,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* NAV */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -82,7 +81,6 @@
     }
     .nav-links a:hover { color: var(--accent); }
 
-    /* HERO */
     .hero {
       padding: 160px 24px 80px;
       text-align: center;
@@ -136,12 +134,11 @@
     .hero p {
       font-size: clamp(16px, 2vw, 19px);
       color: var(--muted);
-      max-width: 560px;
+      max-width: 600px;
       margin: 0 auto;
       line-height: 1.6;
     }
 
-    /* FEATURES */
     .features {
       max-width: 900px;
       margin: 0 auto;
@@ -178,8 +175,7 @@
       line-height: 1.6;
     }
 
-    /* HOW IT WORKS */
-    .how-it-works {
+    .who {
       max-width: 700px;
       margin: 0 auto;
       padding: 0 24px 80px;
@@ -195,51 +191,19 @@
       margin-bottom: 12px;
     }
 
-    .how-it-works h2 {
+    .who h2 {
       font-size: clamp(24px, 3vw, 34px);
       font-weight: 800;
       letter-spacing: -1px;
-      margin-bottom: 40px;
+      margin-bottom: 24px;
     }
 
-    .steps {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      text-align: left;
-    }
-
-    .step {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px;
-    }
-
-    .step-num {
-      font-size: 24px;
-      font-weight: 900;
-      color: var(--accent);
-      flex-shrink: 0;
-      width: 36px;
-    }
-
-    .step h4 {
+    .who p {
       font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .step p {
-      font-size: 14px;
       color: var(--muted);
-      line-height: 1.5;
+      line-height: 1.7;
     }
 
-    /* PLATFORMS */
     .platforms {
       text-align: center;
       padding: 0 24px 80px;
@@ -262,7 +226,6 @@
       color: var(--muted);
     }
 
-    /* FOOTER */
     footer {
       border-top: 1px solid var(--border);
       padding: 32px 48px;
@@ -310,14 +273,11 @@
     }
     .footer-links a:hover { color: var(--accent); }
 
-    /* RESPONSIVE */
     @media (max-width: 768px) {
       nav { padding: 14px 20px; }
       .nav-links { display: none; }
 
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
+      .features-grid { grid-template-columns: 1fr; }
 
       footer {
         flex-direction: column;
@@ -329,7 +289,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">
     <img src="/hogbodylabs-badge.svg" alt="HogBody Labs" />
@@ -341,92 +300,65 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <img src="/droppost-icon.svg" alt="DropPost" class="hero-icon" onerror="this.src='/droppost-icon.png'" />
+  <img src="/sidefill-icon.png" alt="SideFill" class="hero-icon" />
   <div class="coming-badge">Coming Soon</div>
-  <h1>Your blog.<br />Your phone.<br />That's it.</h1>
-  <p>DropPost lets you publish blog posts to your own website from your iPhone or Mac. Write a story, pick some photos, and hit publish. No coding, no CMS, no middleman.</p>
+  <h1>The working clipboard<br />for live-sound crews.</h1>
+  <p>Input lists, stage plots, and changeover notes — the three things your crew actually needs during a show. Synced across iPhone, iPad, and Mac.</p>
 </section>
 
-<!-- FEATURES -->
 <section class="features">
   <div class="features-grid">
     <div class="feature">
-      <div class="feature-icon">📸</div>
-      <h3>Photos from your camera roll</h3>
-      <p>Pick photos right from your library. They're resized automatically for fast web loading.</p>
+      <div class="feature-icon">🎚️</div>
+      <h3>Input list</h3>
+      <p>Channels, sources, mic choices, phantom, notes. Edit on the Mac before doors, pull it up on your phone at FOH.</p>
     </div>
     <div class="feature">
-      <div class="feature-icon">📍</div>
-      <h3>Auto location tagging</h3>
-      <p>Posts are tagged with where you are when you write them. Great for travel blogs.</p>
+      <div class="feature-icon">🎤</div>
+      <h3>Stage plot</h3>
+      <p>Build your own or drop in one you already have. Show positions, monitors, and where the audience is.</p>
     </div>
     <div class="feature">
-      <div class="feature-icon">🎬</div>
-      <h3>YouTube embeds</h3>
-      <p>Paste a YouTube link and it embeds right into your post. No fiddling with embed codes.</p>
+      <div class="feature-icon">📋</div>
+      <h3>Changeover notes</h3>
+      <p>What gets struck, what stays, what moves. The thing nobody writes down until it's too late.</p>
     </div>
     <div class="feature">
-      <div class="feature-icon">📚</div>
-      <h3>Multiple blogs</h3>
-      <p>Run a travel blog and a family blog from the same app. Create as many as you want.</p>
+      <div class="feature-icon">☁️</div>
+      <h3>iCloud sync</h3>
+      <p>Edit on your Mac, see it on your iPhone. Your data lives in your iCloud, not on our servers.</p>
     </div>
     <div class="feature">
-      <div class="feature-icon">🔐</div>
-      <h3>You own everything</h3>
-      <p>Your posts live on your GitHub Pages site. No accounts, no subscriptions, no platform lock-in.</p>
+      <div class="feature-icon">👥</div>
+      <h3>Share with your crew</h3>
+      <p>Share an event with the people working it. Input lists and plots update in real time as the day evolves.</p>
     </div>
     <div class="feature">
-      <div class="feature-icon">🖥️</div>
-      <h3>iPhone, iPad, and Mac</h3>
-      <p>Write on your phone on the go, or sit down at your Mac. Same app, same experience.</p>
+      <div class="feature-icon">🎪</div>
+      <h3>Multi-stage festivals</h3>
+      <p>Multiple stages, multiple bands, multiple changeovers. No copy-paste hell.</p>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="how-it-works">
-  <p class="section-title">How It Works</p>
-  <h2>Build your own blog from scratch.<br />No coding experience needed.</h2>
-
-  <div class="steps">
-    <div class="step">
-      <span class="step-num">1</span>
-      <div>
-        <h4>Set up your site</h4>
-        <p>DropPost walks you through getting a GitHub account and setting up a free website. Buy a custom domain if you want one, or use the free GitHub URL.</p>
-      </div>
-    </div>
-    <div class="step">
-      <span class="step-num">2</span>
-      <div>
-        <h4>Connect the app</h4>
-        <p>Enter your GitHub username and token once. DropPost handles the rest — publishing, images, formatting, all of it.</p>
-      </div>
-    </div>
-    <div class="step">
-      <span class="step-num">3</span>
-      <div>
-        <h4>Write and publish</h4>
-        <p>Type your story, add photos, hit publish. Your post is live on your website in seconds.</p>
-      </div>
-    </div>
-  </div>
+<section class="who">
+  <p class="section-title">Who It's For</p>
+  <h2>Crews that run real shows.</h2>
+  <p>FOH engineers running shows for hire. Monitor engineers tracking 8 mixes across 16 IEMs. Stage managers calling changeovers between bands. Production teams coordinating a multi-stage festival with a crew that doesn't always know each other's names.</p>
+  <p style="margin-top:16px;">If you've ever tried to run a show off a stack of paper, a group text, and a hope, SideFill is for you.</p>
 </section>
 
-<!-- PLATFORMS -->
 <section class="platforms">
   <div class="platform-tags">
     <span class="platform-tag">iPhone</span>
     <span class="platform-tag">iPad</span>
     <span class="platform-tag">Mac</span>
-    <span class="platform-tag">Offline Drafts</span>
-    <span class="platform-tag">GitHub Pages</span>
+    <span class="platform-tag">iCloud Sync</span>
+    <span class="platform-tag">Crew Sharing</span>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">
     <img src="/hogbodylabs-badge.svg" alt="HogBody Labs" />
@@ -435,6 +367,7 @@
   <p>&copy; 2026 HogBody Ventures LLC. All rights reserved.</p>
   <div class="footer-links">
     <a href="/">Home</a>
+    <a href="/sidefill/privacy/">Privacy</a>
     <a href="mailto:support@hogbodylabs.com">Contact</a>
   </div>
 </footer>

@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- Warm dark brown background fills the tile -->
+  <rect width="1024" height="1024" rx="225" fill="#3a2418"/>
+  <rect x="6" y="6" width="1012" height="1012" rx="220" fill="none" stroke="#4a2e1c" stroke-width="2"/>
+
+  <g transform="translate(512, 512)">
+
+    <!-- ===========================================================
+         FADER TRACK (the channel the cap rides in)
+         Sits behind everything. Short relative to v3 - just enough
+         to read as "this slides vertically."
+         =========================================================== -->
+    <rect x="-26" y="-340" width="52" height="680" rx="26" fill="#1a0e08" stroke="#7a4a1e" stroke-width="5"/>
+    <!-- inner highlight in the track -->
+    <rect x="-20" y="-334" width="40" height="668" rx="20" fill="none" stroke="#2a1810" stroke-width="2"/>
+
+    <!-- ===========================================================
+         dB SCALE TICKS - dimmer than v3, and they STOP SHORT of the
+         cap zone (no ticks in the y-range of -90 to +90).
+         Lower opacity so they recede as background texture.
+         =========================================================== -->
+    <g stroke="#7a4a1e" stroke-linecap="round" opacity="0.85">
+      <!-- Above the cap -->
+      <line x1="-180" y1="-300" x2="-50" y2="-300" stroke-width="5"/>
+      <line x1="-150" y1="-240" x2="-50" y2="-240" stroke-width="4"/>
+      <line x1="-180" y1="-180" x2="-50" y2="-180" stroke-width="5"/>
+      <line x1="-150" y1="-120" x2="-50" y2="-120" stroke-width="4"/>
+      <line x1="50" y1="-300" x2="180" y2="-300" stroke-width="5"/>
+      <line x1="50" y1="-240" x2="150" y2="-240" stroke-width="4"/>
+      <line x1="50" y1="-180" x2="180" y2="-180" stroke-width="5"/>
+      <line x1="50" y1="-120" x2="150" y2="-120" stroke-width="4"/>
+
+      <!-- Below the cap -->
+      <line x1="-150" y1="120" x2="-50" y2="120" stroke-width="4"/>
+      <line x1="-180" y1="180" x2="-50" y2="180" stroke-width="5"/>
+      <line x1="-150" y1="240" x2="-50" y2="240" stroke-width="4"/>
+      <line x1="-180" y1="300" x2="-50" y2="300" stroke-width="5"/>
+      <line x1="50" y1="120" x2="150" y2="120" stroke-width="4"/>
+      <line x1="50" y1="180" x2="180" y2="180" stroke-width="5"/>
+      <line x1="50" y1="240" x2="150" y2="240" stroke-width="4"/>
+      <line x1="50" y1="300" x2="180" y2="300" stroke-width="5"/>
+    </g>
+
+    <!-- 0 dB markers on either side of the cap, brighter accent -->
+    <line x1="-220" y1="0" x2="-180" y2="0" stroke="#f5a83a" stroke-width="7" stroke-linecap="round"/>
+    <line x1="180" y1="0" x2="220" y2="0" stroke="#f5a83a" stroke-width="7" stroke-linecap="round"/>
+
+    <!-- ===========================================================
+         THE FADER CAP - the dominant horizontal silhouette.
+         Wide, bold, sits across the middle of the tile like a
+         horizon line. This is what the eye reads first.
+         =========================================================== -->
+
+    <!-- Subtle drop shadow under the cap for depth -->
+    <rect x="-330" y="-78" width="660" height="170" rx="34" fill="#0f0805" opacity="0.6"/>
+
+    <!-- Main cap body -->
+    <rect x="-330" y="-85" width="660" height="170" rx="32" fill="#1a0e08" stroke="#f5a83a" stroke-width="9"/>
+    <!-- Inner bevel suggesting dimensionality -->
+    <rect x="-318" y="-73" width="636" height="146" rx="24" fill="none" stroke="#a86a22" stroke-width="2.5"/>
+
+    <!-- Grip texture lines on the LEFT WING of the cap -->
+    <g stroke="#a86a22" stroke-width="5" stroke-linecap="round">
+      <line x1="-280" y1="-40" x2="-180" y2="-40"/>
+      <line x1="-280" y1="-15" x2="-180" y2="-15"/>
+      <line x1="-280" y1="10" x2="-180" y2="10"/>
+      <line x1="-280" y1="35" x2="-180" y2="35"/>
+    </g>
+
+    <!-- Grip texture lines on the RIGHT WING -->
+    <g stroke="#a86a22" stroke-width="5" stroke-linecap="round">
+      <line x1="180" y1="-40" x2="280" y2="-40"/>
+      <line x1="180" y1="-15" x2="280" y2="-15"/>
+      <line x1="180" y1="10" x2="280" y2="10"/>
+      <line x1="180" y1="35" x2="280" y2="35"/>
+    </g>
+
+    <!-- ===========================================================
+         CLOCK FACE - small circular detail inset into the cap center.
+         No hour markers. Just bezel + hands + pin. Reads as
+         "small clock detail on a fader" not "watch."
+         =========================================================== -->
+
+    <!-- Clock bezel - sized to fit comfortably within the cap's vertical space -->
+    <circle cx="0" cy="0" r="62" fill="#2a1810" stroke="#f5a83a" stroke-width="7"/>
+    <circle cx="0" cy="0" r="52" fill="none" stroke="#a86a22" stroke-width="2"/>
+
+    <!-- Just hands, no markers. Pointing 10:10. -->
+    <line x1="0" y1="0" x2="-28" y2="-16" stroke="#f5a83a" stroke-width="8" stroke-linecap="round"/>
+    <line x1="0" y1="0" x2="36" y2="-21" stroke="#f5a83a" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="6" fill="#f5a83a"/>
+
+  </g>
+</svg>

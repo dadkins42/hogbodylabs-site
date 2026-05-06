@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" 
+  viewBox="0 0 1024 1024" width="1024" height="1024">
+
+  <defs>
+    <!-- Background radial gradient (warm dark brown) -->
+    <radialGradient id="bgGradient" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#3a2510" />
+      <stop offset="100%" stop-color="#1a0f04" />
+    </radialGradient>
+
+    <!-- Soft amber glow under the digits -->
+    <filter id="digitGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="18" />
+    </filter>
+
+    <!-- Subtle inner vignette for depth -->
+    <radialGradient id="vignette" cx="50%" cy="50%" r="55%">
+      <stop offset="60%" stop-color="#000" stop-opacity="0" />
+      <stop offset="100%" stop-color="#000" stop-opacity="0.45" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="1024" height="1024" fill="url(#bgGradient)" />
+
+  <!-- Main speedometer arc -->
+  <path d="M 127.10 371.91 A 409.60 409.60 0 0 1 896.90 371.91" 
+    stroke="#d08020" stroke-width="12.29" 
+    fill="none" stroke-linecap="round" />
+
+  <!-- Red warning zone (90-120 mph) -->
+  <path d="M 751.64 169.76 A 417.79 417.79 0 0 1 904.60 369.11" 
+    stroke="#c83828" stroke-width="20.48" 
+    fill="none" stroke-linecap="round" />
+
+  <!-- Tick marks -->
+  <g>
+    <line x1="131.91" y1="373.66" x2="184.84" y2="392.92"
+      stroke="#f0a850" stroke-width="14.34" stroke-linecap="round" />
+    <line x1="280.00" y1="180.67" x2="312.30" y2="226.80"
+      stroke="#f0a850" stroke-width="14.34" stroke-linecap="round" />
+    <line x1="512.00" y1="107.52" x2="512.00" y2="163.84"
+      stroke="#f0a850" stroke-width="14.34" stroke-linecap="round" />
+    <line x1="744.00" y1="180.67" x2="711.70" y2="226.80"
+      stroke="#f0a850" stroke-width="14.34" stroke-linecap="round" />
+    <line x1="892.09" y1="373.66" x2="839.16" y2="392.92"
+      stroke="#f0a850" stroke-width="14.34" stroke-linecap="round" />
+    <line x1="157.38" y1="317.45" x2="179.83" y2="329.76"
+      stroke="#d08020" stroke-width="5.12" stroke-linecap="round" opacity="0.85" />
+    <line x1="191.10" y1="265.77" x2="211.41" y2="281.35"
+      stroke="#d08020" stroke-width="5.12" stroke-linecap="round" opacity="0.85" />
+    <line x1="232.30" y1="219.82" x2="250.00" y2="238.31"
+      stroke="#d08020" stroke-width="5.12" stroke-linecap="round" opacity="0.85" />
+    <line x1="333.10" y1="149.23" x2="344.43" y2="172.19"
+      stroke="#d08020" stroke-width="5.12" stroke-linecap="round" opacity="0.85" />
+    <line x1="390.37" y1="126.24" x2="398.07" y2="150.66"
+      stroke="#d08020" stroke-width="5.12" stroke-linecap="round" opacity="0.85" />
+    <line x1="450.47" y1="112.23" x2="454.36" y2="137.53"
+      stroke="#d08020" stroke-width="5.12" stroke-linecap="round" opacity="0.85" />
+    <line x1="573.53" y1="112.23" x2="569.64" y2="137.53"
+      stroke="#d08020" stroke-width="5.12" stroke-linecap="round" opacity="0.85" />
+    <line x1="633.63" y1="126.24" x2="625.93" y2="150.66"
+      stroke="#d08020" stroke-width="5.12" stroke-linecap="round" opacity="0.85" />
+    <line x1="690.90" y1="149.23" x2="679.57" y2="172.19"
+      stroke="#d08020" stroke-width="5.12" stroke-linecap="round" opacity="0.85" />
+    <line x1="791.70" y1="219.82" x2="774.00" y2="238.31"
+      stroke="#d08020" stroke-width="5.12" stroke-linecap="round" opacity="0.85" />
+    <line x1="832.90" y1="265.77" x2="812.59" y2="281.35"
+      stroke="#d08020" stroke-width="5.12" stroke-linecap="round" opacity="0.85" />
+    <line x1="866.62" y1="317.45" x2="844.17" y2="329.76"
+      stroke="#d08020" stroke-width="5.12" stroke-linecap="round" opacity="0.85" />
+  </g>
+
+  <!-- Speed labels (0, 60, 120) -->
+  <g font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" 
+     font-weight="700" 
+     fill="#f0a850" 
+     opacity="0.88">
+    <text x="218.52" y="405.18" 
+      font-size="43.01" 
+      text-anchor="middle" 
+      dominant-baseline="central">0</text>
+    <text x="512.00" y="194.56" 
+      font-size="43.01" 
+      text-anchor="middle" 
+      dominant-baseline="central">60</text>
+    <text x="805.48" y="405.18" 
+      font-size="43.01" 
+      text-anchor="middle" 
+      dominant-baseline="central">120</text>
+  </g>
+
+  <!-- Soft warm glow behind the digits -->
+  <text x="512.00" y="563.20"
+    font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif"
+    font-size="368.64" font-weight="900"
+    text-anchor="middle" dominant-baseline="central"
+    fill="#ffc864" opacity="0.30"
+    filter="url(#digitGlow)">55</text>
+
+  <!-- Hero "55" digit readout -->
+  <text x="512.00" y="563.20"
+    font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif"
+    font-size="368.64" font-weight="900"
+    text-anchor="middle" dominant-baseline="central"
+    fill="#faebc8">55</text>
+
+  <!-- "M P H" subtitle with letter spacing -->
+  <text x="512.00" y="765.95"
+    font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif"
+    font-size="71.68" font-weight="700"
+    text-anchor="middle" dominant-baseline="central"
+    letter-spacing="40.96"
+    fill="#d08020">MPH</text>
+
+  <!-- Inner vignette for depth -->
+  <rect x="0" y="0" width="1024" height="1024" fill="url(#vignette)" pointer-events="none" />
+
+</svg>
