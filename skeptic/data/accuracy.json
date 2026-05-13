@@ -2979,7 +2979,61 @@
           "absLowMiss": 3.1
         }
       ]
+    },
+    {
+      "date": "2026-05-12",
+      "actualHigh": 81.1,
+      "actualLow": 42.3,
+      "numReadings": 9,
+      "groundTruth": "Govee sensor",
+      "predictions": [
+        {
+          "source": "Open-Meteo",
+          "predictedHigh": 84.0,
+          "predictedLow": 50.0,
+          "highMiss": 2.9,
+          "lowMiss": 7.7,
+          "absHighMiss": 2.9,
+          "absLowMiss": 7.7
+        },
+        {
+          "source": "NWS",
+          "predictedHigh": 86,
+          "predictedLow": 47,
+          "highMiss": 4.9,
+          "lowMiss": 4.7,
+          "absHighMiss": 4.9,
+          "absLowMiss": 4.7
+        },
+        {
+          "source": "WeatherAPI",
+          "predictedHigh": 79.9,
+          "predictedLow": 45.7,
+          "highMiss": -1.2,
+          "lowMiss": 3.4,
+          "absHighMiss": 1.2,
+          "absLowMiss": 3.4
+        },
+        {
+          "source": "Pirate",
+          "predictedHigh": 83.4,
+          "predictedLow": 51.7,
+          "highMiss": 2.3,
+          "lowMiss": 9.4,
+          "absHighMiss": 2.3,
+          "absLowMiss": 9.4
+        },
+        {
+          "source": "MET Norway",
+          "predictedHigh": 82.6,
+          "predictedLow": 43.9,
+          "highMiss": 1.5,
+          "lowMiss": 1.6,
+          "absHighMiss": 1.5,
+          "absLowMiss": 1.6
+        }
+      ]
     }
   ],
-  "lastUpdated": "2026-05-12T16:09:55.992658+00:00"
+  "lastUpdated": "2026-05-13T16:11:52.027112+00:00"
 }
