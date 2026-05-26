@@ -1,65 +1,119 @@
 {
   "location": "Sisters, OR",
   "groundTruth": "Govee sensor",
-  "lastUpdated": "2026-05-25T16:13:19.558047+00:00",
+  "lastUpdated": "2026-05-26T17:17:15.415059+00:00",
   "dateRange": {
     "start": "2026-03-16",
-    "end": "2026-05-24"
+    "end": "2026-05-25"
   },
-  "daysWithData": 69,
+  "daysWithData": 70,
   "scorecard": [
     {
       "source": "MET Norway",
-      "daysTracked": 69,
+      "daysTracked": 70,
       "avgHighMiss": 2.4,
       "avgLowMiss": 2.8,
-      "highWithin2": 54.0,
+      "highWithin2": 53.0,
       "highWithin5": 93.0,
       "lowWithin2": 49.0,
       "lowWithin5": 86.0
     },
     {
       "source": "Open-Meteo",
-      "daysTracked": 68,
-      "avgHighMiss": 3.2,
+      "daysTracked": 69,
+      "avgHighMiss": 3.3,
       "avgLowMiss": 4.8,
-      "highWithin2": 43.0,
-      "highWithin5": 82.0,
-      "lowWithin2": 24.0,
-      "lowWithin5": 53.0
+      "highWithin2": 42.0,
+      "highWithin5": 81.0,
+      "lowWithin2": 23.0,
+      "lowWithin5": 54.0
     },
     {
       "source": "NWS",
-      "daysTracked": 63,
+      "daysTracked": 64,
       "avgHighMiss": 3.0,
       "avgLowMiss": 5.6,
       "highWithin2": 52.0,
       "highWithin5": 86.0,
-      "lowWithin2": 32.0,
-      "lowWithin5": 56.0
+      "lowWithin2": 31.0,
+      "lowWithin5": 55.0
     },
     {
       "source": "Pirate",
-      "daysTracked": 69,
-      "avgHighMiss": 3.3,
+      "daysTracked": 70,
+      "avgHighMiss": 3.4,
       "avgLowMiss": 5.9,
       "highWithin2": 36.0,
-      "highWithin5": 87.0,
+      "highWithin5": 86.0,
       "lowWithin2": 20.0,
       "lowWithin5": 49.0
     },
     {
       "source": "WeatherAPI",
-      "daysTracked": 69,
-      "avgHighMiss": 4.7,
+      "daysTracked": 70,
+      "avgHighMiss": 4.8,
       "avgLowMiss": 5.1,
       "highWithin2": 23.0,
-      "highWithin5": 64.0,
-      "lowWithin2": 22.0,
-      "lowWithin5": 57.0
+      "highWithin5": 63.0,
+      "lowWithin2": 21.0,
+      "lowWithin5": 56.0
     }
   ],
   "recentDays": [
+    {
+      "date": "2026-05-25",
+      "actualHigh": 80.4,
+      "actualLow": 45.9,
+      "numReadings": 9,
+      "groundTruth": "Govee sensor",
+      "predictions": [
+        {
+          "source": "Open-Meteo",
+          "predictedHigh": 69.8,
+          "predictedLow": 43.7,
+          "highMiss": -10.6,
+          "lowMiss": -2.2,
+          "absHighMiss": 10.6,
+          "absLowMiss": 2.2
+        },
+        {
+          "source": "NWS",
+          "predictedHigh": 76,
+          "predictedLow": 35,
+          "highMiss": -4.4,
+          "lowMiss": -10.9,
+          "absHighMiss": 4.4,
+          "absLowMiss": 10.9
+        },
+        {
+          "source": "WeatherAPI",
+          "predictedHigh": 70.9,
+          "predictedLow": 38.6,
+          "highMiss": -9.5,
+          "lowMiss": -7.3,
+          "absHighMiss": 9.5,
+          "absLowMiss": 7.3
+        },
+        {
+          "source": "Pirate",
+          "predictedHigh": 72.6,
+          "predictedLow": 38.9,
+          "highMiss": -7.8,
+          "lowMiss": -7.0,
+          "absHighMiss": 7.8,
+          "absLowMiss": 7.0
+        },
+        {
+          "source": "MET Norway",
+          "predictedHigh": 77.9,
+          "predictedLow": 42.8,
+          "highMiss": -2.5,
+          "lowMiss": -3.1,
+          "absHighMiss": 2.5,
+          "absLowMiss": 3.1
+        }
+      ]
+    },
     {
       "date": "2026-05-24",
       "actualHigh": 80.2,
@@ -750,60 +804,6 @@
           "lowMiss": 1.6,
           "absHighMiss": 1.5,
           "absLowMiss": 1.6
-        }
-      ]
-    },
-    {
-      "date": "2026-05-11",
-      "actualHigh": 72.1,
-      "actualLow": 36.0,
-      "numReadings": 9,
-      "groundTruth": "Govee sensor",
-      "predictions": [
-        {
-          "source": "Open-Meteo",
-          "predictedHigh": 76.5,
-          "predictedLow": 43.4,
-          "highMiss": 4.4,
-          "lowMiss": 7.4,
-          "absHighMiss": 4.4,
-          "absLowMiss": 7.4
-        },
-        {
-          "source": "NWS",
-          "predictedHigh": 80,
-          "predictedLow": 46,
-          "highMiss": 7.9,
-          "lowMiss": 10.0,
-          "absHighMiss": 7.9,
-          "absLowMiss": 10.0
-        },
-        {
-          "source": "WeatherAPI",
-          "predictedHigh": 75.2,
-          "predictedLow": 38.2,
-          "highMiss": 3.1,
-          "lowMiss": 2.2,
-          "absHighMiss": 3.1,
-          "absLowMiss": 2.2
-        },
-        {
-          "source": "Pirate",
-          "predictedHigh": 78.7,
-          "predictedLow": 48.8,
-          "highMiss": 6.6,
-          "lowMiss": 12.8,
-          "absHighMiss": 6.6,
-          "absLowMiss": 12.8
-        },
-        {
-          "source": "MET Norway",
-          "predictedHigh": 73.2,
-          "predictedLow": 32.9,
-          "highMiss": 1.1,
-          "lowMiss": -3.1,
-          "absHighMiss": 1.1,
-          "absLowMiss": 3.1
         }
       ]
     }
