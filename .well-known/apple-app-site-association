@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["4V26NGPWLA.com.lyricsapp.ios"],
+        "components": [
+          {
+            "/": "/song/*",
+            "comment": "Shared StageBook songs open directly in the app"
+          }
+        ]
+      }
+    ]
+  }
+}

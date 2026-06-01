@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>StageBook</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #111;
+      color: #f5f5f5;
+      text-align: center;
+      padding: 24px;
+    }
+    .card { max-width: 420px; }
+    img { width: 96px; height: 96px; border-radius: 22px; margin-bottom: 20px; }
+    h1 { font-size: 22px; margin: 0 0 10px; }
+    p { font-size: 16px; line-height: 1.5; color: #c9c9c9; margin: 0 0 24px; }
+    a.button {
+      display: inline-block;
+      background: #e8960a;
+      color: #111;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 13px 26px;
+      border-radius: 12px;
+    }
+    a.alt { display: block; margin-top: 18px; color: #888; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="card" id="content">
+    <img src="/stagebook-icon.png" alt="StageBook" onerror="this.style.display='none'" />
+    <h1>Page not found</h1>
+    <p>The page you're looking for isn't here.</p>
+    <a class="button" href="/">Go to HogBody Labs</a>
+  </div>
+
+  <script>
+    // Shared-song links look like /song/<id>. If StageBook is installed, iOS
+    // opens the app directly and this page never loads. If we're here, the app
+    // isn't installed (or this isn't an Apple device) — guide them to get it.
+    if (location.pathname.indexOf('/song/') === 0) {
+      document.getElementById('content').innerHTML =
+        '<img src="/stagebook-icon.png" alt="StageBook" onerror="this.style.display=\'none\'" />' +
+        '<h1>Open this song in StageBook</h1>' +
+        '<p>Someone shared a song with you. Install StageBook, then tap the link again to add it to your library.</p>' +
+        '<a class="button" href="https://stagebooktoolkit.com">Get StageBook</a>' +
+        '<a class="alt" href="/">About HogBody Labs</a>';
+      document.title = 'Open this song in StageBook';
+    }
+  </script>
+</body>
+</html>
