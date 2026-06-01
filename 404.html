@@ -4,6 +4,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>StageBook</title>
+
+  <!-- Link-preview card (Open Graph). Crawlers read static HTML only and can't
+       run the JS below or know which song a code maps to, so this card is the
+       same branded "shared song" card for every /song/<code> link. The actual
+       song title travels in the share message text, not here. -->
+  <meta property="og:title" content="Open this song in StageBook" />
+  <meta property="og:description" content="Someone shared a song with you. Tap to open it in StageBook." />
+  <meta property="og:image" content="https://hogbodylabs.com/stagebook-icon.png" />
+  <meta property="og:url" content="https://hogbodylabs.com/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Open this song in StageBook" />
+  <meta name="twitter:description" content="Someone shared a song with you. Tap to open it in StageBook." />
+  <meta name="twitter:image" content="https://hogbodylabs.com/stagebook-icon.png" />
   <style>
     :root { color-scheme: light dark; }
     body {
