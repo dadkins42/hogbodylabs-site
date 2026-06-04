@@ -1,0 +1,26 @@
+{
+  "shows": [
+    {
+      "id": "e1a40000-0000-4000-8000-000000000001",
+      "date": "2026-06-07",
+      "time": "6:00–8:00 PM",
+      "venue": "Seattle Jazz Vespers",
+      "city": "Seattle, WA",
+      "band": "The Elnah Jordan Experience",
+      "ticketURL": "",
+      "notes": "1111 Harvard Ave",
+      "status": "confirmed"
+    },
+    {
+      "id": "e1a40000-0000-4000-8000-000000000002",
+      "date": "2026-07-09",
+      "time": "",
+      "venue": "Conor Byrne Pub",
+      "city": "Seattle, WA",
+      "band": "Jonti Siman Trio",
+      "ticketURL": "",
+      "notes": "with Mya Byrne & Debbie Miller",
+      "status": "confirmed"
+    }
+  ]
+}

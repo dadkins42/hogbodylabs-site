@@ -1,0 +1,182 @@
+/* ------------------------------------------------------------------
+   Musician site — default skin. All colors/fonts are CSS variables so
+   reskinning to a client's brand is a one-block change.
+------------------------------------------------------------------ */
+:root {
+  --bg: #faf8f4;
+  --bg-alt: #f1ece3;
+  --fg: #1c1a17;
+  --muted: #6f675c;
+  --line: #e4ddd1;
+  --card: #ffffff;
+  --accent: #b5532a;        /* warm rust — change this to reskin */
+  --accent-ink: #ffffff;
+  --hero-h: 78vh;
+  --maxw: 880px;
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--sans);
+  color: var(--fg);
+  background: var(--bg);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* ---- Top nav ---- */
+.topnav {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.7rem 1.1rem;
+  background: rgba(250, 248, 244, 0.92);
+  backdrop-filter: saturate(150%) blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  font-family: var(--serif);
+  font-size: 1.2rem; font-weight: 700; letter-spacing: 0.01em;
+  text-decoration: none;
+}
+.nav-toggle {
+  background: none; border: 0; font-size: 1.4rem; cursor: pointer;
+  color: var(--fg); line-height: 1; padding: 0.2rem 0.4rem;
+}
+.nav-links { display: none; flex-direction: column; }
+.nav-links.open {
+  display: flex; position: absolute; top: 100%; left: 0; right: 0;
+  background: var(--bg); border-bottom: 1px solid var(--line); padding: 0.4rem 0;
+}
+.nav-links a {
+  text-decoration: none; color: var(--fg);
+  padding: 0.7rem 1.1rem; font-size: 0.95rem;
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.nav-links a:hover { color: var(--accent); }
+
+/* ---- Hero ---- */
+.hero { position: relative; height: var(--hero-h); display: flex; align-items: flex-end; }
+.hero-img {
+  position: absolute; inset: 0;
+  background: #2a2622 center/cover no-repeat;
+  background-image: linear-gradient(135deg, #3a342c, #1c1a17);
+}
+.hero::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.15) 45%, rgba(0,0,0,0.25) 100%);
+}
+.hero-inner { position: relative; z-index: 2; padding: 1.6rem 1.2rem 2.2rem; color: #fff; max-width: var(--maxw); width: 100%; margin: 0 auto; }
+.hero-name { font-family: var(--serif); font-size: clamp(2.4rem, 9vw, 4.4rem); margin: 0; line-height: 1.02; letter-spacing: -0.01em; text-shadow: 0 2px 18px rgba(0,0,0,0.4); }
+.hero-tagline { font-size: clamp(1rem, 3.6vw, 1.3rem); margin: 0.5rem 0 1.1rem; opacity: 0.92; font-style: italic; }
+.next-show {
+  display: inline-flex; flex-direction: column; gap: 0.1rem;
+  text-decoration: none; color: #fff;
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 12px; padding: 0.6rem 0.95rem; backdrop-filter: blur(4px);
+}
+.next-show:hover { background: var(--accent); border-color: var(--accent); }
+.next-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.14em; opacity: 0.8; }
+.next-date { font-weight: 700; font-size: 1.05rem; }
+.next-venue { font-size: 0.85rem; opacity: 0.9; }
+
+/* ---- Sections ---- */
+.section { padding: 3.2rem 1.2rem; }
+.section.alt { background: var(--bg-alt); }
+.section-inner { max-width: var(--maxw); margin: 0 auto; }
+.section-title {
+  font-family: var(--serif); font-size: 1.9rem; margin: 0 0 1.4rem;
+  position: relative; padding-bottom: 0.5rem;
+}
+.section-title::after { content: ""; position: absolute; left: 0; bottom: 0; width: 48px; height: 3px; background: var(--accent); border-radius: 2px; }
+
+/* ---- Shows (the centerpiece) ---- */
+.shows-list { display: flex; flex-direction: column; }
+.month-header {
+  font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--accent); margin: 1.6rem 0 0.6rem; font-weight: 700;
+}
+.month-header:first-child { margin-top: 0; }
+.show-row {
+  display: grid; grid-template-columns: 58px 1fr auto; align-items: center; gap: 1rem;
+  padding: 0.95rem 0; border-bottom: 1px solid var(--line);
+}
+.show-date {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+  padding: 0.45rem 0; line-height: 1;
+}
+.show-date .dow { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.show-date .day { font-size: 1.5rem; font-weight: 700; margin: 0.1rem 0; font-family: var(--serif); }
+.show-date .mon { font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); font-weight: 700; }
+.show-details { display: flex; flex-direction: column; min-width: 0; }
+.show-venue { font-weight: 700; font-size: 1.06rem; }
+.show-city { color: var(--muted); font-size: 0.92rem; }
+.show-meta { color: var(--muted); font-size: 0.82rem; margin-top: 0.15rem; }
+.show-action {
+  white-space: nowrap; text-decoration: none; font-size: 0.85rem; font-weight: 700;
+  padding: 0.5rem 0.95rem; border-radius: 999px;
+}
+.show-action.tickets { background: var(--accent); color: var(--accent-ink); }
+.show-action.tickets:hover { filter: brightness(1.07); }
+.show-row.cancelled { opacity: 0.6; }
+.show-row.cancelled .show-venue { text-decoration: line-through; }
+.cancelled-tag {
+  background: transparent; color: var(--muted);
+  border: 1px solid var(--line); text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.72rem;
+}
+.empty-state { color: var(--muted); font-style: italic; padding: 1rem 0; }
+
+/* ---- Music ---- */
+.music-grid { display: grid; grid-template-columns: 1fr; gap: 1.4rem; }
+.music-card { display: flex; flex-direction: column; gap: 0.5rem; }
+.embed { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000; }
+.embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.embed-empty {
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted); background: var(--card); border: 1px dashed var(--line);
+  letter-spacing: 0.12em; font-size: 0.8rem;
+}
+.music-title { font-size: 0.92rem; color: var(--muted); }
+
+/* ---- Bands ---- */
+.bands-grid { display: grid; grid-template-columns: 1fr; gap: 1.2rem; }
+.band-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 1.2rem; }
+.band-card h3 { font-family: var(--serif); margin: 0 0 0.4rem; font-size: 1.25rem; }
+.band-card p { margin: 0 0 0.7rem; color: var(--fg); }
+.band-photo { width: 100%; border-radius: 10px; margin-bottom: 0.8rem; }
+.band-links a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 0.85rem; margin-right: 1rem; }
+.band-links a:hover { text-decoration: underline; }
+
+/* ---- About ---- */
+.about-inner { display: flex; flex-direction: column; gap: 1.4rem; }
+.about-img { width: 100%; max-width: 320px; border-radius: 14px; align-self: center; }
+.about-text :is(p) { margin: 0 0 1rem; }
+
+/* ---- Booking ---- */
+.section.booking { text-align: center; }
+.booking-line { color: var(--muted); margin: 0 0 0.4rem; }
+.booking-email { font-family: var(--serif); font-size: clamp(1.3rem, 5vw, 1.9rem); color: var(--accent); text-decoration: none; word-break: break-word; }
+.booking-email:hover { text-decoration: underline; }
+.socials { margin-top: 1.4rem; display: flex; gap: 1.3rem; justify-content: center; flex-wrap: wrap; }
+.socials a { text-decoration: none; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.82rem; font-weight: 700; color: var(--fg); }
+.socials a:hover { color: var(--accent); }
+
+/* ---- Footer ---- */
+.site-footer { text-align: center; padding: 2rem 1rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--line); }
+
+/* ---- Wider screens ---- */
+@media (min-width: 720px) {
+  .nav-toggle { display: none; }
+  .nav-links { display: flex; flex-direction: row; gap: 0.4rem; position: static; background: none; border: 0; padding: 0; }
+  .show-row { grid-template-columns: 70px 1fr auto; gap: 1.4rem; padding: 1.1rem 0; }
+  .show-date .day { font-size: 1.7rem; }
+  .music-grid { grid-template-columns: 1fr 1fr; }
+  .bands-grid { grid-template-columns: 1fr 1fr; }
+  .about-inner { flex-direction: row; align-items: flex-start; }
+  .about-img { align-self: flex-start; }
+}

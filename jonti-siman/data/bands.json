@@ -1,0 +1,20 @@
+{
+  "bands": [
+    {
+      "id": "aaaa1111-0000-0000-0000-000000000002",
+      "name": "Jonti Siman Trio",
+      "blurb": "Jonti's own trio — with Owen Thayer on guitar and William Sage on drums. Original compositions and instrumental takes on American roots music.",
+      "photo": "images/jonti-siman-trio.jpg",
+      "links": [
+        { "label": "Instagram", "url": "https://www.instagram.com/jonti_siman/" }
+      ]
+    },
+    {
+      "id": "aaaa1111-0000-0000-0000-000000000001",
+      "name": "The Elnah Jordan Experience",
+      "blurb": "Jonti on bass with vocalist Elnah Jordan.",
+      "photo": "images/elnah-jordan-experience.jpg",
+      "links": []
+    }
+  ]
+}
