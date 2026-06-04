@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Jonti Siman — Website Intake</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #6b6b6b;
+    --line: #e4e4e4;
+    --accent: #2b6cb0;
+    --bg: #fafafa;
+    --card: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 24px 18px 64px; }
+  header.intro {
+    padding: 8px 0 20px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 8px;
+  }
+  header.intro h1 { font-size: 1.6rem; margin: 0 0 8px; }
+  header.intro p { color: var(--muted); margin: 0 0 8px; font-size: 0.98rem; }
+  fieldset {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--card);
+    margin: 20px 0;
+    padding: 16px 16px 8px;
+  }
+  legend { font-weight: 600; font-size: 1.05rem; padding: 0 8px; }
+  legend small { display:block; font-weight:400; color:var(--muted); font-size:0.8rem; padding-top:3px; }
+  .q { margin: 0 0 20px; }
+  label.q-label { display: block; font-weight: 600; margin: 0 0 4px; font-size: 0.98rem; }
+  .hint { color: var(--muted); font-size: 0.86rem; margin: 0 0 8px; }
+  input[type=text], input[type=email], input[type=url], textarea, select {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    font: inherit;
+    color: var(--ink);
+    background: #fff;
+    -webkit-appearance: none;
+  }
+  input:focus, textarea:focus, select:focus { outline: 2px solid var(--accent); border-color: var(--accent); }
+  textarea { min-height: 96px; resize: vertical; }
+  .checks { margin: 4px 0 10px; }
+  .check { display: flex; align-items: flex-start; gap: 9px; padding: 6px 0; }
+  .check input { margin-top: 3px; width: 18px; height: 18px; flex: none; }
+  .check label { font-weight: 400; }
+  .own { margin-top: 6px; }
+  .own label { font-weight: 400; font-size: 0.9rem; color: var(--muted); display:block; margin-bottom:4px; }
+  input[type=file] { font-size: 0.9rem; }
+  button {
+    width: 100%; padding: 15px; font-size: 1.05rem; font-weight: 600;
+    color: #fff; background: var(--accent); border: 0; border-radius: 11px; cursor: pointer; margin-top: 8px;
+  }
+  button:active { opacity: 0.9; }
+  .foot { color: var(--muted); font-size: 0.82rem; text-align: center; margin-top: 16px; }
+  .pill { display:inline-block; background:#eef5fc; color:var(--accent); border-radius:20px; padding:2px 10px; font-size:0.8rem; font-weight:600; }
+  .hp { position:absolute; left:-9999px; opacity:0; height:0; overflow:hidden; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="intro">
+    <h1>Let's build your website 🎸</h1>
+    <p>Hey Jonti — here's the plan: we'll build your site from your answers below, then set you up to
+       keep the parts that change — shows, collaborations, new music — current yourself. Answer whatever's
+       relevant and skip anything that isn't.</p>
+  </header>
+
+  <!--
+    SETUP: Submissions email to dale@hogbodylabs.com via FormSubmit.co — no account, no API key.
+    The first time anyone submits, FormSubmit sends a one-time confirmation link to that address;
+    click it once and the form works from then on. (Can later swap the action to FormSubmit's
+    hashed alias to keep the email out of the public page source.)
+  -->
+  <form action="https://formsubmit.co/dale@hogbodylabs.com" method="POST">
+    <input type="hidden" name="_subject" value="Jonti Siman — Website Intake (new submission)">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
+    <!-- honeypot: hidden from people, catches bots -->
+    <input type="text" name="_honey" style="display:none">
+
+    <!-- 1. BASICS -->
+    <fieldset>
+      <legend>1 · The basics</legend>
+      <div class="q">
+        <label class="q-label">Your name, exactly as it should appear on the site</label>
+        <input type="text" name="01_name" value="Jonti Siman">
+      </div>
+      <div class="q">
+        <label class="q-label">A one-line tagline under your name</label>
+        <p class="hint">e.g. "Singer-songwriter · Portland, OR"</p>
+        <input type="text" name="02_tagline" placeholder="Your tagline">
+      </div>
+      <div class="q">
+        <label class="q-label">Your website address</label>
+        <p class="hint">Is it jontisiman.com, or something else?</p>
+        <input type="text" name="03_domain" placeholder="jontisiman.com">
+      </div>
+      <div class="q">
+        <label class="q-label">Do you already own this domain?</label>
+        <p class="hint">If so, where's it registered (GoDaddy, Namecheap, etc.), and do you have the login?
+           We'll need access to point it at your new site.</p>
+        <textarea name="03_domain_access" style="min-height:72px"></textarea>
+      </div>
+    </fieldset>
+
+    <!-- 2. PAGES -->
+    <fieldset>
+      <legend>2 · Your pages
+        <small>What sections do you want on the site? Tick any that apply.</small>
+      </legend>
+      <div class="q">
+        <div class="checks">
+          <div class="check"><input type="checkbox" name="04_pages" value="Home / landing" id="p1"><label for="p1">Home / landing page</label></div>
+          <div class="check"><input type="checkbox" name="04_pages" value="Shows / calendar" id="p2"><label for="p2">Shows / gig calendar</label></div>
+          <div class="check"><input type="checkbox" name="04_pages" value="About / bio" id="p3"><label for="p3">About / your story</label></div>
+          <div class="check"><input type="checkbox" name="04_pages" value="Collaborations / bands" id="p4"><label for="p4">Collaborations &amp; bands you play with</label></div>
+          <div class="check"><input type="checkbox" name="04_pages" value="Music" id="p5"><label for="p5">Music (links / players)</label></div>
+          <div class="check"><input type="checkbox" name="04_pages" value="Photo gallery" id="p6"><label for="p6">Photo gallery</label></div>
+          <div class="check"><input type="checkbox" name="04_pages" value="Video" id="p7"><label for="p7">Video</label></div>
+          <div class="check"><input type="checkbox" name="04_pages" value="Contact / booking" id="p8"><label for="p8">Contact / booking</label></div>
+          <div class="check"><input type="checkbox" name="04_pages" value="Store / merch" id="p9"><label for="p9">Store / merch</label></div>
+          <div class="check"><input type="checkbox" name="04_pages" value="News / blog" id="p10"><label for="p10">News / blog</label></div>
+          <div class="check"><input type="checkbox" name="04_pages" value="Mailing list" id="p11"><label for="p11">Mailing-list signup</label></div>
+        </div>
+        <div class="own">
+          <label for="04b">Anything you want that's not on the list?</label>
+          <textarea id="04b" name="04_pages_notes"></textarea>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- 3. WHAT YOU'LL UPDATE YOURSELF -->
+    <fieldset>
+      <legend>3 · What you'll keep updated yourself
+        <small>We'll build you a simple way to edit these. Which parts of your site change over time?</small>
+      </legend>
+      <div class="q">
+        <div class="checks">
+          <div class="check"><input type="checkbox" name="05_living" value="Shows / dates" id="l1"><label for="l1">Shows &amp; dates</label></div>
+          <div class="check"><input type="checkbox" name="05_living" value="Collaborations / bands" id="l2"><label for="l2">Collaborations &amp; the bands/people you're playing with</label></div>
+          <div class="check"><input type="checkbox" name="05_living" value="New music / releases" id="l3"><label for="l3">New music &amp; releases</label></div>
+          <div class="check"><input type="checkbox" name="05_living" value="Photos" id="l4"><label for="l4">Photos</label></div>
+          <div class="check"><input type="checkbox" name="05_living" value="News / announcements" id="l5"><label for="l5">News &amp; announcements</label></div>
+        </div>
+        <div class="own">
+          <label for="05b">Anything not listed that you'd want to keep updated yourself?</label>
+          <textarea id="05b" name="05_living_notes"></textarea>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- 4. LOOK & FEEL -->
+    <fieldset>
+      <legend>4 · The look &amp; feel</legend>
+      <div class="q">
+        <label class="q-label">Any artist/band websites you love the look of?</label>
+        <p class="hint">Paste links or names.</p>
+        <textarea name="06_inspiration"></textarea>
+      </div>
+      <div class="q">
+        <label class="q-label">Any colors or a mood?</label>
+        <p class="hint">e.g. clean &amp; minimal, bold, vintage, dark, bright, earthy…</p>
+        <textarea name="07_mood"></textarea>
+      </div>
+      <div class="q">
+        <label class="q-label">Do you have a logo? <span class="pill">optional</span></label>
+        <p class="hint">If so, email the file to dale@hogbodylabs.com — and the photos you already sent are covered.</p>
+        <input type="text" name="08_logo" placeholder="Yes / no — or any notes">
+      </div>
+    </fieldset>
+
+    <!-- 5. ABOUT -->
+    <fieldset>
+      <legend>5 · About you</legend>
+      <div class="q">
+        <label class="q-label">Your bio — as long or short as you like</label>
+        <textarea name="09_bio" style="min-height:150px"></textarea>
+      </div>
+    </fieldset>
+
+    <!-- 6. MUSIC & CONTACT -->
+    <fieldset>
+      <legend>6 · Your music &amp; contact</legend>
+      <div class="q">
+        <label class="q-label">Links to your music we can feature</label>
+        <p class="hint">Spotify, Bandcamp, YouTube, SoundCloud, Apple Music…</p>
+        <textarea name="10_music"></textarea>
+      </div>
+      <div class="q">
+        <label class="q-label">Your social links</label>
+        <p class="hint">Instagram, Facebook, YouTube, TikTok, etc.</p>
+        <textarea name="11_socials"></textarea>
+      </div>
+      <div class="q">
+        <label class="q-label">Best email for booking/contact</label>
+        <input type="email" name="12_booking_email" placeholder="you@example.com">
+      </div>
+    </fieldset>
+
+    <!-- 7. ANYTHING ELSE -->
+    <fieldset>
+      <legend>7 · Anything else</legend>
+      <div class="q">
+        <label class="q-label">Anything else you want us to know?</label>
+        <textarea name="13_anything" style="min-height:120px"></textarea>
+      </div>
+    </fieldset>
+
+    <button type="submit">Send it to Dale</button>
+    <p class="foot">Your answers go straight to Dale — nothing is posted publicly.</p>
+  </form>
+
+</div>
+</body>
+</html>
