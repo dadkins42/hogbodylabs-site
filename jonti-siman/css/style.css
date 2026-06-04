@@ -63,7 +63,10 @@ a { color: inherit; }
 .hero { position: relative; height: var(--hero-h); display: flex; align-items: flex-end; }
 .hero-img {
   position: absolute; inset: 0;
-  background: #2a2622 center/cover no-repeat;
+  /* Focal point biased toward the top so faces stay in frame when a near-square
+     photo is cropped to a wide desktop banner. On tall phone screens the image
+     fills vertically, so this has no effect there. */
+  background: #2a2622 center 20% / cover no-repeat;
   background-image: linear-gradient(135deg, #3a342c, #1c1a17);
 }
 .hero::after {
