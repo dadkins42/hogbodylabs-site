@@ -1,0 +1,44 @@
+{
+  "forecastDate": "2026-06-28",
+  "capturedAt": "2026-06-27T05:56:01.981732+00:00",
+  "location": "Sisters, OR",
+  "latitude": 44.35199,
+  "longitude": -121.44685,
+  "predictions": [
+    {
+      "source": "Open-Meteo",
+      "high": 60.2,
+      "low": 45.0,
+      "precip": 0.07,
+      "wind": 24.6
+    },
+    {
+      "source": "NWS",
+      "high": 63,
+      "low": 38,
+      "precip": 0,
+      "wind": 6.0
+    },
+    {
+      "source": "WeatherAPI",
+      "high": 56.5,
+      "low": 35.9,
+      "precip": 0.01,
+      "wind": 15.2
+    },
+    {
+      "source": "Pirate",
+      "high": 61.4,
+      "low": 42.9,
+      "precip": 0.0,
+      "wind": 13.3
+    },
+    {
+      "source": "MET Norway",
+      "high": 61.9,
+      "low": 46.6,
+      "precip": 0,
+      "wind": 20.1
+    }
+  ]
+}
