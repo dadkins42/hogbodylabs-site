@@ -62,6 +62,21 @@
     .feature h3 { font-size:16px; font-weight:700; margin-bottom:6px; }
     .feature p { font-size:14px; color:var(--muted); }
 
+    .twocol { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .col { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius); padding:26px 28px; }
+    .col.ref { border-color:rgba(255,94,26,0.5); box-shadow:0 0 0 1px rgba(255,94,26,0.15), 0 8px 30px rgba(255,94,26,0.08); }
+    .col-tag { display:inline-block; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
+    .col.ref .col-tag { color:var(--accent); }
+    .col h3 { font-size:19px; font-weight:800; margin-bottom:10px; }
+    .col p { font-size:14px; color:var(--muted); margin-bottom:10px; }
+    .col p:last-child { margin-bottom:0; }
+    .col strong { color:var(--white); }
+    .col .kicker { color:var(--white); font-weight:700; margin-top:4px; }
+
+    .example { background:var(--bg2); border:1px solid var(--border); border-left:3px solid var(--accent);
+      border-radius:12px; padding:18px 22px; margin-top:20px; color:#ccc; font-size:15px; }
+    .example strong { color:var(--white); }
+
     .qa { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius); padding:26px 28px; margin-bottom:16px; }
     .qa h3 { font-size:18px; font-weight:700; margin-bottom:8px; }
     .qa p { color:var(--muted); font-size:15px; margin-bottom:10px; }
@@ -87,7 +102,7 @@
 
     @media (max-width:768px) {
       nav { padding:14px 20px; } .nav-links { display:none; }
-      .steps, .features-grid { grid-template-columns:1fr; }
+      .steps, .features-grid, .twocol { grid-template-columns:1fr; }
       footer { flex-direction:column; text-align:center; padding:24px 20px; }
     }
   </style>
@@ -126,6 +141,29 @@
       <div class="step"><div class="n">2</div><h3>Share the link</h3><p>Send a folder's link — <strong>listen-only</strong>, or <strong>collaborate</strong> so they can leave notes.</p></div>
       <div class="step"><div class="n">3</div><h3>Get feedback</h3><p>They listen, compare takes, and comment on the exact spot. You get an email when they do.</p></div>
     </div>
+    <p class="example">For example: <strong>record a run-through right in your band's rehearsal folder, trim the count-in off the front, and share the link with everyone</strong> — no files to email, no app to install. They open it on their phone and play it on the drive home.</p>
+  </section>
+
+  <!-- PRACTICE VS REFERENCE -->
+  <section class="section" id="players">
+    <h2>Two players in one</h2>
+    <p class="sub">Every track has two modes, a tap apart — and they're <em>not</em> the same tool. One <strong>bends the music</strong> so you can learn it; the other plays it <strong>dead-clean</strong> so you can judge it.</p>
+    <div class="twocol">
+      <div class="col">
+        <div class="col-tag">Practice · bend it to your ear</div>
+        <h3>Slow down &amp; transpose</h3>
+        <p><strong>Slow it down — all the way to a quarter speed — with the pitch left untouched.</strong> That blazing solo or tricky lick you could never quite catch? Now every note is right there to learn by ear.</p>
+        <p><strong>Transpose the whole track up or down — a full octave either way — without changing the tempo.</strong> Drop a song into your instrument's key, match a singer's range, or figure a part out somewhere easier, then move it back.</p>
+        <p>Loop the four bars that keep tripping you up and drill them until they're yours. This is the woodshed.</p>
+      </div>
+      <div class="col ref">
+        <div class="col-tag">Reference · the source of truth</div>
+        <h3>Hear exactly what's there</h3>
+        <p>Reference does the opposite — it gets out of the way. <strong>Dead-clean, bit-accurate playback</strong> with zero speed or pitch processing, so you hear precisely what's on the recording: nothing added, nothing colored.</p>
+        <p>A big, readable <strong>counter</strong>, a <strong>type-a-time jump</strong>, and a one-tap <strong>download</strong> of the exact file. It's the trusted copy you A/B every mix against and pin feedback to — “the vocal at 2:34.”</p>
+        <p class="kicker">When it has to be right, you listen in Reference.</p>
+      </div>
+    </div>
   </section>
 
   <!-- FEATURES -->
@@ -134,9 +172,9 @@
     <p class="sub">A review tool for the people you share with, and a practice tool for the players — in the same place.</p>
     <div class="features-grid">
       <div class="feature"><div class="fi">▶️</div><h3>Player with a real counter</h3><p>Play, scrub, and read the exact time. Type a time like 2:34 and jump straight there.</p></div>
-      <div class="feature"><div class="fi">🎚️</div><h3>Practice &amp; Reference modes</h3><p>Practice adds speed and key changes to woodshed a part. Reference is clean, accurate playback for critical listening.</p></div>
       <div class="feature"><div class="fi">🎙️</div><h3>Record straight in</h3><p>Lay down a take right in a folder — from the web or the apps. No separate recorder, no file shuffling; perfect for quick ideas and rehearsal capture.</p></div>
       <div class="feature"><div class="fi">🎛️</div><h3>Overdub</h3><p>Play a track and record a new part right over it — a harmony, a solo, a practice pass — then keep your take alongside the original.</p></div>
+      <div class="feature"><div class="fi">✂️</div><h3>Trim</h3><p>Set a clean in and out point on any track without touching the file — cut the count-in or the dead air off a rehearsal recording before you share it.</p></div>
       <div class="feature"><div class="fi">🗂️</div><h3>Versions</h3><p>Upload another take as a version of the same mix and A/B them at the same spot to hear what changed.</p></div>
       <div class="feature"><div class="fi">💬</div><h3>Timestamped comments</h3><p>Pin feedback to an exact moment — “push the downbeat at 1:42.” Reply and mark things resolved.</p></div>
       <div class="feature"><div class="fi">📍</div><h3>Locations</h3><p>Drop numbered markers and loop a section, like a DAW's memory locations — for getting around, not commenting.</p></div>
