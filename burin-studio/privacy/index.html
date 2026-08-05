@@ -3,72 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Burin Studio — Privacy Policy · HogBody Labs</title>
+  <title>Burin Studio — Privacy Policy</title>
+  <link rel="icon" href="/burin-icon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--bg:#111113;--bg2:#18181b;--white:#f5f5f5;--muted:#9a9a9a;--accent:#ff5e1a;--border:rgba(255,255,255,.09)}
-    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;padding:48px 20px 80px}
-    .wrap{max-width:720px;margin:0 auto}
-    a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .eyebrow{color:var(--accent);font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
-    h1{font-size:34px;font-weight:800;margin:6px 0 4px;letter-spacing:-.01em}
-    .updated{color:var(--muted);font-size:14px;margin-bottom:32px}
-    h2{font-size:19px;font-weight:700;margin:30px 0 8px}
-    p{color:#dcdcdc;margin:8px 0}
-    ul{margin:8px 0 8px 20px;color:#dcdcdc}
-    li{margin:5px 0}
-    strong{color:var(--white)}
-    .foot{margin-top:44px;padding-top:20px;border-top:1px solid var(--border);color:var(--muted);font-size:14px}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg:#111113; --bg2:#18181b; --white:#f5f5f5; --muted:#999; --accent:#ff5e1a; --border:rgba(255,255,255,0.09); }
+    body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--white); line-height:1.8; -webkit-font-smoothing:antialiased; }
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between;
+      padding:18px 48px; background:rgba(12,12,14,0.9); backdrop-filter:blur(16px); border-bottom:1px solid var(--border); }
+    nav a { color:var(--white); text-decoration:none; font-weight:700; }
+    .container { max-width:720px; margin:0 auto; padding:120px 24px 60px; }
+    h1 { font-size:32px; font-weight:800; letter-spacing:-.5px; margin-bottom:6px; }
+    .updated { font-size:13px; color:var(--muted); margin-bottom:40px; }
+    h2 { font-size:18px; font-weight:700; color:var(--accent); margin-top:36px; margin-bottom:12px; }
+    p, li { font-size:15px; color:#ccc; margin-bottom:12px; }
+    ul { padding-left:20px; margin-bottom:16px; }
+    li { margin-bottom:6px; }
+    strong { color:var(--white); }
+    .highlight { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:20px; margin:20px 0; }
+    .highlight p { margin-bottom:0; font-weight:500; color:var(--white); }
+    a { color:var(--accent); }
+    footer { border-top:1px solid var(--border); padding:32px 48px; text-align:center; font-size:12px; color:#444; }
+    footer a { color:var(--muted); text-decoration:none; }
+    @media (max-width:600px) { nav { padding:14px 20px; } .container { padding:100px 16px 60px; } }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="eyebrow">Burin Studio</div>
-    <h1>Privacy Policy</h1>
-    <div class="updated">HogBody Labs · Last updated August 2026</div>
 
-    <p>Burin Studio (&ldquo;the app&rdquo;) is made by HogBody Labs. This policy explains what we collect and why.</p>
+<nav>
+  <a href="/">HogBody Labs</a>
+</nav>
 
-    <h2>What we collect</h2>
-    <ul>
-      <li><strong>Your email address</strong> — to create your account and sign you in with a one-time code.</li>
-      <li><strong>The audio and files you upload</strong> — your tracks, mixes, folder names, notes, and comments. This is your content; we store it so the app works.</li>
-      <li><strong>Basic technical data</strong> — standard logs (device type, timestamps) needed to run and secure the service.</li>
-    </ul>
+<div class="container">
+  <h1>Burin Studio Privacy Policy</h1>
+  <p class="updated">Last updated: August 5, 2026</p>
 
-    <h2>How we use it</h2>
-    <ul>
-      <li>To provide the app: store and stream your audio, sync your library, and deliver the share links you create.</li>
-      <li>To secure the service and fix problems.</li>
-      <li>We do <strong>not</strong> sell your data, and we do <strong>not</strong> use it for advertising or third-party tracking.</li>
-    </ul>
-
-    <h2>Sharing</h2>
-    <ul>
-      <li>Your content is private to your account unless <strong>you</strong> create a share link. Anyone with a link you share can access that content, by your choice.</li>
-      <li>We use <strong>Cloudflare</strong> to store files and run the service. If you subscribe to a paid plan, payment is handled by a payment processor (such as Apple or Stripe) — we never see your full card details.</li>
-    </ul>
-
-    <h2>Your choices</h2>
-    <ul>
-      <li>You can delete tracks, folders, or your entire account at any time, which removes that content from our storage.</li>
-      <li>To request deletion or ask a question, contact us at <a href="mailto:support@hogbodylabs.com">support@hogbodylabs.com</a>.</li>
-    </ul>
-
-    <h2>Children</h2>
-    <p>Burin Studio isn&rsquo;t directed at children under 13, and we don&rsquo;t knowingly collect their data.</p>
-
-    <h2>Changes</h2>
-    <p>We&rsquo;ll update this page if our practices change; the &ldquo;last updated&rdquo; date reflects the latest version.</p>
-
-    <div class="foot">
-      Contact: <a href="mailto:support@hogbodylabs.com">support@hogbodylabs.com</a><br>
-      &copy; HogBody Labs · <a href="https://hogbodylabs.com">hogbodylabs.com</a>
-    </div>
+  <div class="highlight">
+    <p>The short version: we don't sell your data, there are no ads, and there's no third-party tracking. We ask for your email only to sign you in. The audio and comments you add are yours, and stay private unless you create a share link.</p>
   </div>
+
+  <h2>What Burin Studio Does</h2>
+  <p>Burin Studio lets you store audio (mixes, rehearsal tracks, demos), organize it into folders, and share it by a link so others can listen and leave feedback. It runs on the web and as Mac and iOS apps.</p>
+
+  <h2>What We Collect</h2>
+  <ul>
+    <li><strong>Your email address</strong> — to create your account and sign you in with a one-time code (no password).</li>
+    <li><strong>The audio and content you add</strong> — tracks, folder names, comments, and locations. This is your content; we store it so the app works.</li>
+    <li><strong>Basic technical logs</strong> — standard information (like device type and timestamps) needed to run and secure the service.</li>
+  </ul>
+  <p>Listeners and commenters who open a link you shared do <strong>not</strong> need an account. If they leave a comment, we store the display name they type so their feedback is attributed — nothing more.</p>
+
+  <h2>How We Use It</h2>
+  <ul>
+    <li>To provide the app: store and stream your audio, sync your library, and deliver the links you share.</li>
+    <li>To send you a sign-in code, and to email you when someone comments on your tracks (you can turn comment emails off).</li>
+    <li>To keep the service secure and fix problems.</li>
+  </ul>
+
+  <h2>What We Don't Do</h2>
+  <ul>
+    <li>We do <strong>not</strong> sell or rent your email or any of your data.</li>
+    <li>We do <strong>not</strong> show ads or use your content for advertising.</li>
+    <li>We do <strong>not</strong> run third-party tracking, ad networks, or profiling.</li>
+    <li>We <strong>cannot</strong> access your device — the app runs in a normal web page (or a sandboxed app) and has no access to your files, Wi-Fi, photos, or anything else on your device beyond what you choose to upload.</li>
+  </ul>
+
+  <h2>Sharing &amp; Storage</h2>
+  <p>Your content is private to your account unless <strong>you</strong> create a share link — then anyone with that link can access what you shared, by your choice. We use <strong>Cloudflare</strong> to store files and run the service. If you subscribe to a paid plan, payment is handled by a payment processor (such as Apple or Stripe) — we never see your full card details.</p>
+
+  <h2>Your Choices</h2>
+  <p>You can delete tracks, folders, or your entire account at any time, which removes that content from our storage. To request deletion or ask a question, email <a href="mailto:support@hogbodylabs.com">support@hogbodylabs.com</a>.</p>
+
+  <h2>Children's Privacy</h2>
+  <p>Burin Studio isn't directed at children under 13, and we don't knowingly collect their information.</p>
+
+  <h2>Changes to This Policy</h2>
+  <p>If we update this policy, we'll change the date at the top.</p>
+
+  <h2>Contact</h2>
+  <p>Questions? Email <a href="mailto:support@hogbodylabs.com">support@hogbodylabs.com</a></p>
+</div>
+
+<footer>
+  <a href="/">HogBody Labs</a> · <a href="/burin-studio/">Burin Studio</a>
+</footer>
+
 </body>
 </html>

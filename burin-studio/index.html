@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Burin Studio — Share, review, and practice your music by a link</title>
+  <meta name="description" content="Burin Studio lets you share mixes and rehearsal tracks by a link. Anyone can listen and leave feedback pinned to the exact second — no app, no account to press play." />
+  <meta property="og:title" content="Burin Studio" />
+  <meta property="og:description" content="Share your music by a link. Others listen and leave feedback on the exact spot — no app, no account to press play." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="/burin-icon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:#111113; --bg2:#18181b; --bg3:#222227;
+      --white:#f5f5f5; --muted:#999; --accent:#ff5e1a; --accent2:#ff8c00;
+      --border:rgba(255,255,255,0.09); --radius:14px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--white); line-height:1.6; -webkit-font-smoothing:antialiased; }
+
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between;
+      padding:18px 48px; background:rgba(12,12,14,0.9); backdrop-filter:blur(16px); border-bottom:1px solid var(--border); }
+    .nav-logo { display:flex; align-items:center; gap:12px; text-decoration:none; }
+    .nav-logo img { width:36px; height:36px; object-fit:contain; }
+    .nav-logo span { font-size:17px; font-weight:700; color:var(--white); letter-spacing:-0.3px; }
+    .nav-links { display:flex; gap:32px; list-style:none; }
+    .nav-links a { color:var(--muted); text-decoration:none; font-size:14px; font-weight:500; transition:color .2s; }
+    .nav-links a:hover { color:var(--accent); }
+
+    .hero { padding:150px 24px 60px; text-align:center; position:relative; overflow:hidden; }
+    .hero::before { content:''; position:absolute; top:-60px; left:50%; transform:translateX(-50%);
+      width:800px; height:500px; background:radial-gradient(ellipse, rgba(255,94,26,0.15) 0%, rgba(255,140,0,0.06) 40%, transparent 70%); pointer-events:none; }
+    .hero-icon { width:100px; height:100px; border-radius:22px; margin:0 auto 28px; }
+    .eyebrow { display:inline-block; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--accent);
+      border:1px solid rgba(255,94,26,0.3); background:rgba(255,94,26,0.1); padding:6px 14px; border-radius:50px; margin-bottom:24px; }
+    .hero h1 { font-size:clamp(34px,5vw,58px); font-weight:900; letter-spacing:-2px; line-height:1.06; margin-bottom:20px;
+      background:linear-gradient(to top,#ff8c00 0%,#ffffff 60%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .hero p.lead { font-size:clamp(16px,2vw,19px); color:var(--muted); max-width:620px; margin:0 auto 32px; }
+    .btn-primary { display:inline-block; background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#fff; font-weight:700;
+      font-size:15px; padding:13px 28px; border-radius:50px; text-decoration:none; transition:transform .15s, box-shadow .15s; box-shadow:0 6px 24px rgba(255,94,26,.28); }
+    .btn-primary:hover { transform:translateY(-2px); box-shadow:0 10px 30px rgba(255,94,26,.4); }
+
+    .wrap { max-width:900px; margin:0 auto; padding:0 24px; }
+    .section { padding:52px 0; border-top:1px solid var(--border); }
+    .section h2 { font-size:clamp(24px,3vw,32px); font-weight:800; letter-spacing:-.5px; margin-bottom:8px; }
+    .section .sub { color:var(--muted); font-size:15px; margin-bottom:28px; max-width:640px; }
+
+    .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .step { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius); padding:22px; }
+    .step .n { display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:50%;
+      background:rgba(255,94,26,.14); color:var(--accent); font-weight:800; font-size:15px; margin-bottom:12px; }
+    .step h3 { font-size:16px; font-weight:700; margin-bottom:6px; }
+    .step p { font-size:14px; color:var(--muted); }
+
+    .features-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+    .feature { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius); padding:24px; }
+    .feature .fi { font-size:26px; margin-bottom:10px; }
+    .feature h3 { font-size:16px; font-weight:700; margin-bottom:6px; }
+    .feature p { font-size:14px; color:var(--muted); }
+
+    .qa { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius); padding:26px 28px; margin-bottom:16px; }
+    .qa h3 { font-size:18px; font-weight:700; margin-bottom:8px; }
+    .qa p { color:var(--muted); font-size:15px; margin-bottom:10px; }
+    .qa p:last-child { margin-bottom:0; }
+    .qa strong { color:var(--white); }
+    .qa ul { margin:6px 0 0 18px; color:var(--muted); font-size:15px; }
+    .qa li { margin:5px 0; }
+    .qa.privacy { border-color:rgba(255,94,26,0.35); }
+    .qa .big { color:var(--accent); font-weight:800; font-size:16px; }
+
+    .platform-tags { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:8px; }
+    .platform-tag { font-size:13px; font-weight:600; padding:8px 20px; border-radius:50px; background:var(--bg2); border:1px solid var(--border); color:var(--muted); }
+    .cta-band { text-align:center; padding:56px 24px; }
+
+    footer { border-top:1px solid var(--border); padding:32px 48px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+    .footer-logo { display:flex; align-items:center; gap:10px; }
+    .footer-logo img { width:28px; height:28px; object-fit:contain; filter:brightness(0) invert(0.7); }
+    .footer-logo span { font-size:14px; font-weight:700; color:var(--white); }
+    footer p { font-size:13px; color:var(--muted); }
+    .footer-links { display:flex; gap:24px; }
+    .footer-links a { color:var(--muted); text-decoration:none; font-size:13px; transition:color .2s; }
+    .footer-links a:hover { color:var(--accent); }
+
+    @media (max-width:768px) {
+      nav { padding:14px 20px; } .nav-links { display:none; }
+      .steps, .features-grid { grid-template-columns:1fr; }
+      footer { flex-direction:column; text-align:center; padding:24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <img src="/hogbodylabs-badge.svg" alt="HogBody Labs" />
+    <span>HogBody Labs</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#apps">Apps</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#account">Account</a></li>
+    <li><a href="#privacy">Privacy</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <img src="/burin-icon.svg" alt="Burin Studio" class="hero-icon" />
+  <div class="eyebrow">Available on the web · Mac &amp; iOS apps</div>
+  <h1>Share your music<br />by a link.</h1>
+  <p class="lead">Burin Studio is where you put a mix, a rehearsal track, or a rough demo and send it to the people who need to hear it. They click, they listen, and they leave feedback pinned to the exact second — no app to install, no account to press play.</p>
+  <a href="https://daleadkins.net/studio" class="btn-primary">Open Burin Studio →</a>
+</section>
+
+<div class="wrap">
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="how">
+    <h2>How it works</h2>
+    <p class="sub">Three steps, and the person on the other end doesn't need an account for any of it.</p>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>Add your tracks</h3><p>Drop mixes or rehearsal audio into a folder — from the web, or the Mac and iOS apps.</p></div>
+      <div class="step"><div class="n">2</div><h3>Share the link</h3><p>Send a folder's link — <strong>listen-only</strong>, or <strong>collaborate</strong> so they can leave notes.</p></div>
+      <div class="step"><div class="n">3</div><h3>Get feedback</h3><p>They listen, compare takes, and comment on the exact spot. You get an email when they do.</p></div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section" id="features">
+    <h2>What's inside</h2>
+    <p class="sub">A review tool for the people you share with, and a practice tool for the players — in the same place.</p>
+    <div class="features-grid">
+      <div class="feature"><div class="fi">▶️</div><h3>Player with a real counter</h3><p>Play, scrub, and read the exact time. Type a time like 2:34 and jump straight there.</p></div>
+      <div class="feature"><div class="fi">🎚️</div><h3>Practice &amp; Reference modes</h3><p>Practice adds speed and key changes to woodshed a part. Reference is clean, accurate playback for critical listening.</p></div>
+      <div class="feature"><div class="fi">🗂️</div><h3>Versions</h3><p>Upload another take as a version of the same mix and A/B them at the same spot to hear what changed.</p></div>
+      <div class="feature"><div class="fi">💬</div><h3>Timestamped comments</h3><p>Pin feedback to an exact moment — “push the downbeat at 1:42.” Reply and mark things resolved.</p></div>
+      <div class="feature"><div class="fi">📍</div><h3>Locations</h3><p>Drop numbered markers and loop a section, like a DAW's memory locations — for getting around, not commenting.</p></div>
+      <div class="feature"><div class="fi">🔗</div><h3>Link sharing</h3><p>One link to listen, another to collaborate. Share a whole folder or a single track — nothing to install.</p></div>
+      <div class="feature"><div class="fi">📶</div><h3>Save offline</h3><p>Pull a folder onto your phone and play it with no signal — handy in the rehearsal-room dead zone.</p></div>
+      <div class="feature"><div class="fi">🍎</div><h3>Native Mac &amp; iOS apps</h3><p>Keyboard shortcuts, hi-res audio, record straight in — with the same library as the web.</p></div>
+    </div>
+  </section>
+
+  <!-- ACCOUNT -->
+  <section class="section" id="account">
+    <h2>Do I need an account?</h2>
+    <div class="qa">
+      <p class="big">No — not to listen, and not to comment.</p>
+      <p>Anyone you send a link to can open it in a browser and <strong>play right away</strong>. On a collaborate link they can also <strong>leave comments</strong> — they're just asked for a name so you know who's talking. You only make an account if you want your <em>own</em> space.</p>
+    </div>
+    <div class="qa">
+      <h3>What a free account gets you</h3>
+      <ul>
+        <li>Your own library to upload and organize your tracks</li>
+        <li>Share your own folders by link — listen or collaborate</li>
+        <li>Keep folders other people shared with you</li>
+        <li>Versions, practice tools, and offline playback</li>
+      </ul>
+      <p style="margin-top:12px">Signing up is an email and a one-time code — <strong>no password</strong> to remember.</p>
+    </div>
+  </section>
+
+  <!-- PRIVACY -->
+  <section class="section" id="privacy">
+    <h2>Is my stuff private?</h2>
+    <div class="qa privacy">
+      <p class="big">Short version: yes. We don't sell your data, there are no ads, and there's no third-party tracking.</p>
+      <ul>
+        <li><strong>Your email</strong> is used only to sign you in — nothing else. We don't sell or rent it.</li>
+        <li><strong>Your audio and comments</strong> are yours. We store them so the app works, and they're private unless <em>you</em> create a share link.</li>
+        <li><strong>No, we can't touch your device.</strong> Burin Studio runs in a normal web page — it can't see your files, your Wi-Fi, your photos, or anything else on your phone or computer.</li>
+        <li><strong>No hidden tracking.</strong> No ad networks, no selling your info, no analytics profiles following you around.</li>
+      </ul>
+      <p style="margin-top:12px">The full details are in the <a href="/burin-studio/privacy/" style="color:var(--accent)">privacy policy</a>.</p>
+    </div>
+  </section>
+
+</div>
+
+<section class="platforms" style="text-align:center; padding:8px 24px 8px;">
+  <div class="platform-tags">
+    <span class="platform-tag">Web</span>
+    <span class="platform-tag">Mac</span>
+    <span class="platform-tag">iPhone</span>
+    <span class="platform-tag">iPad</span>
+    <span class="platform-tag">Audio</span>
+  </div>
+</section>
+
+<section class="cta-band">
+  <a href="https://daleadkins.net/studio" class="btn-primary">Open Burin Studio →</a>
+</section>
+
+<footer>
+  <div class="footer-logo">
+    <img src="/hogbodylabs-badge.svg" alt="HogBody Labs" />
+    <span>HogBody Labs</span>
+  </div>
+  <p>&copy; 2026 HogBody Ventures LLC. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/burin-studio/privacy/">Privacy</a>
+    <a href="mailto:support@hogbodylabs.com">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
