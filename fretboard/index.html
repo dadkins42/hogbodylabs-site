@@ -240,11 +240,11 @@
       <span class="val" id="tourVal"></span>
       <button id="tourUp" aria-label="Next voicing of this chord">&rsaquo;</button>
     </div>
-    <span class="lbl" id="courseLbl">Course</span>
+    <span class="lbl" id="courseLbl">String</span>
     <div class="stepper" id="courseStep">
-      <button id="crsDown" aria-label="Move shape to lower course">&minus;</button>
+      <button id="crsDown" aria-label="Move shape to a lower string">&minus;</button>
       <span class="val" id="crsVal"></span>
-      <button id="crsUp" aria-label="Move shape to higher course">+</button>
+      <button id="crsUp" aria-label="Move shape to a higher string">+</button>
     </div>
     <div class="seg" id="qualSeg">
       <button data-q="major" aria-pressed="true">Major</button>
@@ -378,7 +378,7 @@ const shapesOK=()=>!!INST[S.inst].shapes;
    A shape is fret numbers per course, low to high (G D A E on mandolin),
    null where a course is not fretted. The whole pattern slides: add the
    position offset to every number. `root` says where the root sits, in the
-   same coordinates — it may land on a course the shape doesn't sound, in
+   same coordinates — it may land on a string the shape doesn't sound, in
    which case it draws as a hollow ghost dot. `core` is the subset of
    courses kept in the stripped view.
 
@@ -462,7 +462,7 @@ function windowDegrees(sh,w){
     return DEG[o]||'?';
   });
 }
-// Semitones above the root for each course, at the shape's written position.
+// Semitones above the root for each string, at the shape's written position.
 // A uniform slide or course shift moves every note equally, so these hold everywhere.
 function courseOffsets(sh){
   const st=INST[S.inst].strings;
@@ -987,14 +987,14 @@ function drawAnswer(){
     lines.push(shapeLabel(S.shape)+
       (lowest===0?', open position'
                  :` at the ${ordinal(lowest)} fret`)+
-      (v.sevenAdded?`, ${v.courses[v.notes.findIndex(x=>x.degree==='♭7'||x.degree==='7')]||''} course taken to the seventh`:''));
+      (v.sevenAdded?`, ${v.courses[v.notes.findIndex(x=>x.degree==='♭7'||x.degree==='7')]||''} string taken to the seventh`:''));
     if(!v.hasThird)
       lines.push('Modal — no third in it, so it sits under major or minor alike.');
     else if(v.sevenAsked&&!v.sevenAdded)
       lines.push('No room for the seventh here — showing the plain triad.');
     if(S.shift!==0){
       const n=Math.abs(S.shift), up=S.shift>0;
-      lines.push(`Moved ${ORD[n]} course ${up?'up':'down'} — `+
+      lines.push(`Moved ${ORD[n]} string ${up?'up':'down'} — `+
         (n===1?`a fifth ${up?'higher':'lower'}`:`${ORD[n]} fifths ${up?'higher':'lower'}`)+
         `, same frets. Now on ${v.courses.join(' ')}.`);
     }
@@ -1130,7 +1130,7 @@ function syncSummaries(){
   document.getElementById('qualSeg').title = noThird
     ? 'This shape has no third, so there is no major or minor to choose.' : '';
   document.getElementById('hint').textContent = fifths
-    ? 'Drag the shape along the neck or across the courses. Arrow keys work too.'
+    ? 'Drag the shape along the neck or across the strings. Arrow keys work too.'
     : 'Drag the shape along the neck, or use the arrow keys.';
 }
 
