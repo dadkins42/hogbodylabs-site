@@ -1,0 +1,30 @@
+{
+  "name": "Burin Fretboard",
+  "short_name": "Fretboard",
+  "description": "Chord and note patterns on the neck, for mandolin, mandola, tenor banjo, 5-string banjo, guitar and bass.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F1F0EC",
+  "theme_color": "#F1F0EC",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
