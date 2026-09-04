@@ -413,9 +413,13 @@ const SHAPES={
   Cc:{suffix:'closed', frets:[5,2,3,0], root:{c:0,f:5}, econ:{i:0,len:3}},
   // The only shape here with the 3 underneath, which no window of the others
   // can produce. Written at its lowest closed position, an E; drop it a fret
-  // and you get an E flat with the G string open. Named for its degrees rather
-  // than for a chord letter, because that is what it is. Economy is the pair.
-  L3:{name:'3 1 5', frets:[1,2,2,0], root:{c:1,f:2}, econ:{i:0,len:2}}
+  // and you get an E flat with the G string open.
+  //
+  // Named Low 3 rather than 3 1 5 on purpose. A name made of degrees is a
+  // claim about what is sounding, and it goes false the moment you narrow to
+  // the economy pair. Low 3 describes the one thing every window of it shares,
+  // so it survives narrowing the way D bar does.
+  L3:{name:'Low 3', frets:[1,2,2,0], root:{c:1,f:2}, econ:{i:0,len:2}}
 };
 const SHAPE_ORDER=['D','G','C','A','Cc','L3'];
 
