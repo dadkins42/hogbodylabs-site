@@ -421,13 +421,12 @@ const SHAPES={
   // so it survives narrowing the way D bar does.
   L3:{name:'Low 3', frets:[1,2,2,0], root:{c:1,f:2}, econ:{i:0,len:2}},
 
-  // The classic bluegrass chop chords. Dale does not play these and calls them
+  // The classic bluegrass shapes. Dale does not play these and calls them
   // awful, but nearly everyone else does, so a student will meet them. Whole
-  // by definition: the chop is all four ringing and then choked, so there is
-  // no economy window to mark.
-  Gch:{suffix:'chop', frets:[7,5,2,3], root:{c:1,f:5}, econ:null},
+  // by definition: all four ringing and then choked, so no economy window.
+  Gch:{suffix:'BGrass', frets:[7,5,2,3], root:{c:1,f:5}, econ:null},
   // No fifth in it at all, just the root and the third doubled.
-  Dch:{suffix:'chop', frets:[7,4,5,2], root:{c:0,f:7}, econ:null}
+  Dch:{suffix:'BGrass', frets:[7,4,5,2], root:{c:0,f:7}, econ:null}
 };
 const SHAPE_ORDER=['D','G','C','A','Cc','L3','Gch','Dch'];
 
