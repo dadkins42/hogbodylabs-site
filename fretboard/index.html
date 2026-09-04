@@ -410,9 +410,13 @@ const SHAPES={
   // he reaches for soloing rather than rhythm.
   A :{suffix:'bar', frets:[2,2,0,0], root:{c:2,f:0}, econ:{i:0,len:3}},
   // Keep G, D and A, mute E. Dale almost never plays the E string in rhythm.
-  Cc:{suffix:'closed', frets:[5,2,3,0], root:{c:0,f:5}, econ:{i:0,len:3}}
+  Cc:{suffix:'closed', frets:[5,2,3,0], root:{c:0,f:5}, econ:{i:0,len:3}},
+  // The only shape here with the 3 underneath, which no window of the others
+  // can produce. Written at its lowest closed position, an E; drop it a fret
+  // and you get an E flat with the G string open. Economy window not yet set.
+  L3:{suffix:'low 3', frets:[1,2,2,0], root:{c:1,f:2}}
 };
-const SHAPE_ORDER=['D','G','C','A','Cc'];
+const SHAPE_ORDER=['D','G','C','A','Cc','L3'];
 
 // A shape is named for the chord it makes at the nut, so the same fingering is
 // a D bar on mandolin and a G bar on mandola. Everything is just shifted a
