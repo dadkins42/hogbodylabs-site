@@ -413,8 +413,9 @@ const SHAPES={
   Cc:{suffix:'closed', frets:[5,2,3,0], root:{c:0,f:5}, econ:{i:0,len:3}},
   // The only shape here with the 3 underneath, which no window of the others
   // can produce. Written at its lowest closed position, an E; drop it a fret
-  // and you get an E flat with the G string open. Economy window not yet set.
-  L3:{suffix:'low 3', frets:[1,2,2,0], root:{c:1,f:2}}
+  // and you get an E flat with the G string open. Named for its degrees rather
+  // than for a chord letter, because that is what it is. Economy is the pair.
+  L3:{name:'3 1 5', frets:[1,2,2,0], root:{c:1,f:2}, econ:{i:0,len:2}}
 };
 const SHAPE_ORDER=['D','G','C','A','Cc','L3'];
 
@@ -424,6 +425,9 @@ const SHAPE_ORDER=['D','G','C','A','Cc','L3'];
 // family and reproduces Dale's own names on mandolin exactly.
 function shapeLabel(k){
   const sh=SHAPES[k], st=INST[S.inst].strings;
+  // A shape named for its degrees says the same thing on any tuning, so it
+  // keeps its name. The rest are named for the chord they make at the nut.
+  if(sh.name) return sh.name;
   if(!st[sh.root.c]) return sh.suffix;
   return pick((st[sh.root.c].midi+sh.root.f)%12).main+' '+sh.suffix;
 }
