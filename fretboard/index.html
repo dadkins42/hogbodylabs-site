@@ -419,9 +419,17 @@ const SHAPES={
   // claim about what is sounding, and it goes false the moment you narrow to
   // the economy pair. Low 3 describes the one thing every window of it shares,
   // so it survives narrowing the way D bar does.
-  L3:{name:'Low 3', frets:[1,2,2,0], root:{c:1,f:2}, econ:{i:0,len:2}}
+  L3:{name:'Low 3', frets:[1,2,2,0], root:{c:1,f:2}, econ:{i:0,len:2}},
+
+  // The classic bluegrass chop chords. Dale does not play these and calls them
+  // awful, but nearly everyone else does, so a student will meet them. Whole
+  // by definition: the chop is all four ringing and then choked, so there is
+  // no economy window to mark.
+  Gch:{suffix:'chop', frets:[7,5,2,3], root:{c:1,f:5}, econ:null},
+  // No fifth in it at all, just the root and the third doubled.
+  Dch:{suffix:'chop', frets:[7,4,5,2], root:{c:0,f:7}, econ:null}
 };
-const SHAPE_ORDER=['D','G','C','A','Cc','L3'];
+const SHAPE_ORDER=['D','G','C','A','Cc','L3','Gch','Dch'];
 
 // A shape is named for the chord it makes at the nut, so the same fingering is
 // a D bar on mandolin and a G bar on mandola. Everything is just shifted a
