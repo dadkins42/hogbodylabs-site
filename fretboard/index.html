@@ -115,6 +115,25 @@
   .again:hover{background:var(--ink);color:var(--paper)}
   .again + .again{margin-left:6px}
 
+  /* ---------- help ---------- */
+  .help h4{font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+    color:var(--ink-soft);margin:14px 0 6px}
+  .help h4:first-child{margin-top:2px}
+  .help dl{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;margin:0;max-width:70ch}
+  .help dt{font-weight:600;font-size:13px;white-space:nowrap;display:flex;align-items:center;gap:7px}
+  .help dd{margin:0;font-size:13px;color:var(--ink-soft)}
+  .help .tip{font-size:12.5px;color:var(--ink-soft);margin:8px 0 0;max-width:70ch}
+  .sw{width:15px;height:15px;border-radius:50%;flex:0 0 auto;display:inline-block}
+  .sw.filled{background:var(--abalone)}
+  .sw.faded{background:none;border:1.5px solid var(--nickel);opacity:.65}
+  .sw.ghost{background:rgba(33,31,31,.55);border:2px dashed #D9A85C}
+  .sw.ring{background:none;border:2px solid var(--ink-soft)}
+  .sw.mute{background:none;position:relative}
+  .sw.mute::before,.sw.mute::after{content:'';position:absolute;left:1px;top:6px;width:13px;height:2.4px;
+    background:var(--ink-soft);border-radius:2px}
+  .sw.mute::before{transform:rotate(45deg)}
+  .sw.mute::after{transform:rotate(-45deg)}
+
   /* ---------- shape bar ---------- */
   .shapebar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:4px 0 2px}
   .stepper{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--rule);border-radius:3px}
@@ -132,6 +151,33 @@
 </head>
 <body>
 <div class="wrap">
+
+  <!-- ============ disclosure: how to use ============ -->
+  <details class="disc" id="discHelp">
+    <summary><span class="k">How to use</span><span class="v">the controls, and reading the board</span></summary>
+    <div class="disc-body help">
+      <h4>Controls</h4>
+      <dl>
+        <dt>Chord</dt><dd>Type a chord and the shape you are holding slides to it. It stays on that chord while you change shape or strings.</dd>
+        <dt>Position</dt><dd>Moves the shape up and down the neck. The chord name follows it.</dd>
+        <dt>Up the neck</dt><dd>Steps through every place that chord lives, starting nearest the nut.</dd>
+        <dt>String</dt><dd>Slides the grip sideways. In fifths tuning that transposes by a fifth with your fingers where they are.</dd>
+        <dt>Play</dt><dd>Which strings you fret, labelled by degree. The one marked <b>economy</b> is the pared-down grip.</dd>
+        <dt>Strum</dt><dd>Sounds the chord. Tapping any dot sounds that note.</dd>
+      </dl>
+      <p class="tip">You can also drag the shape on the board, or use the arrow keys: left and right along the neck, up and down across the strings.</p>
+
+      <h4>Reading the board</h4>
+      <dl>
+        <dt><span class="sw filled"></span>Filled</dt><dd>The notes you are playing. The brass one is the root.</dd>
+        <dt><span class="sw faded"></span>Faded</dt><dd>The rest of the chord: where those notes sit if you want them.</dd>
+        <dt><span class="sw ghost"></span>Hollow</dt><dd>The root, when the grip does not sound it.</dd>
+        <dt><span class="sw ring"></span>Open</dt><dd>At the nut: that open string belongs to the chord and may ring.</dd>
+        <dt><span class="sw mute"></span>Muted</dt><dd>At the nut: stop that string, its open note is not in the chord.</dd>
+      </dl>
+      <p class="tip">Numbers are scale degrees. 1 is the root, 3 the third, 5 the fifth, and a flat sign lowers it. Switch to note names under Display.</p>
+    </div>
+  </details>
 
   <!-- ============ disclosure: instrument ============ -->
   <details class="disc" id="discInst">
