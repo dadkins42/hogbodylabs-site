@@ -625,30 +625,52 @@ function shapeVoicing(){
 }
 
 // Every place this chord lives, ordered up the neck. Each shape is placed at
-// whatever position puts its root on the wanted note, which may be twice on a
-// long neck. Nothing is authored: the tour falls out of the shapes themselves.
+// whatever position puts its root on the wanted note, and on a fifths tuning
+// also at every set of strings it can sit on, since moving a grip one string
+// over transposes it by a fifth without the frets moving. Nothing is authored:
+// the tour falls out of the shapes themselves.
+//
+// Only the window actually played is considered, so a two-string economy grip
+// is free to sit anywhere its two strings fit.
+function tourWindow(sh){
+  const cs=fretted(sh);
+  return sh.econ ? cs.slice(sh.econ.i,sh.econ.i+sh.econ.len) : cs;
+}
+// Identifies a grip by the strings and frets under the hand, so the same
+// fingering reached two different ways is listed once.
+function gripKey(k,pos,shift){
+  const sh=SHAPES[k], off=courseOffsets(sh), min3=minorBase();
+  return tourWindow(sh).map(c=>
+    (c+shift)+':'+(sh.frets[c]+pos-((min3&&off[c]===4)?1:0))).join(',');
+}
 function tourFor(rootPc){
-  const I=INST[S.inst], out=[];
+  const I=INST[S.inst], n=I.strings.length, fifths=fifthsTuned();
+  const out=[], seen=new Set();
   SHAPE_ORDER.forEach(k=>{
-    const sh=SHAPES[k], cs=fretted(sh);
-    if(!cs.length) return;
+    const sh=SHAPES[k], win=tourWindow(sh);
+    if(!win.length||!I.strings[sh.root.c]) return;
+    // Same fret arithmetic the range check uses, minor flip included, or the
+    // tour offers stops that get clamped out from under it.
+    const off=courseOffsets(sh), min3=minorBase();
+    const fs=win.map(c=>sh.frets[c]-((min3&&off[c]===4)?1:0));
+    const lo=Math.min(...fs), hi=Math.max(...fs);
     const basePc=(I.strings[sh.root.c].midi+sh.root.f)%12;
-    const need=((rootPc-basePc)%12+12)%12;
-    const lo=Math.min(...cs.map(c=>sh.frets[c])), hi=Math.max(...cs.map(c=>sh.frets[c]));
-    // Order by where the hand actually goes, which is the economy grip when
-    // there is one.
-    const win=sh.econ?cs.slice(sh.econ.i,sh.econ.i+sh.econ.len):cs;
-    const wlo=Math.min(...win.map(c=>sh.frets[c]));
-    for(let p=need-12;p<=S.frets;p+=12){
-      if(p+lo<0||p+hi>S.frets) continue;
-      out.push({shape:k,pos:p,low:p+wlo});
+    const sMin=fifths?-Math.min(...win):0, sMax=fifths?(n-1)-Math.max(...win):0;
+    for(let shift=sMin;shift<=sMax;shift++){
+      const need=((rootPc-basePc-7*shift)%12+12)%12;
+      for(let p=need-12;p<=S.frets;p+=12){
+        if(p+lo<0||p+hi>S.frets) continue;
+        const key=gripKey(k,p,shift);
+        if(seen.has(key)) continue;
+        seen.add(key);
+        out.push({shape:k,pos:p,shift,low:p+lo});
+      }
     }
   });
-  out.sort((a,b)=>a.low-b.low||a.shape.localeCompare(b.shape));
+  out.sort((a,b)=>a.low-b.low||a.shape.localeCompare(b.shape)||a.shift-b.shift);
   return out;
 }
-// The lowest position at which THIS shape makes that chord, or null if it
-// cannot within the frets on show.
+
 function placeShapeOnChord(k,pc,shift){
   const sh=SHAPES[k], I=INST[S.inst], cs=fretted(sh);
   if(!cs.length||!I.strings[sh.root.c]) return null;
@@ -715,7 +737,7 @@ function jumpToChord(pc,qual){
   if(!list.length) return false;
   if(qual) S.qual=qual;
   const t=list[0];
-  S.shape=t.shape; S.pos=t.pos; S.shift=0;
+  S.shape=t.shape; S.pos=t.pos; S.shift=t.shift;
   const nsh=SHAPES[S.shape];
   S.win = nsh.econ ? {...nsh.econ} : {i:0,len:fretted(nsh).length};
   document.getElementById('viewSeg').dataset.sig='';
@@ -723,7 +745,7 @@ function jumpToChord(pc,qual){
   return true;
 }
 function tourIndex(list){
-  return list.findIndex(t=>t.shape===S.shape&&t.pos===S.pos);
+  return list.findIndex(t=>t.shape===S.shape&&t.pos===S.pos&&t.shift===S.shift);
 }
 function goTour(step){
   const v=shapeVoicing(); if(!v) return;
@@ -732,7 +754,7 @@ function goTour(step){
   i = i<0 ? (step>0?0:list.length-1) : i+step;
   if(i<0||i>=list.length) return;
   const t=list[i];
-  S.shape=t.shape; S.pos=t.pos; S.shift=0;
+  S.shape=t.shape; S.pos=t.pos; S.shift=t.shift;
   // Land on the economy window where Dale has given one: the tour should hand
   // you the grip you would play, not the theoretical whole shape. The window
   // chips are right there to widen it back out.
