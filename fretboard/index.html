@@ -339,12 +339,15 @@ function parseChord(str){
   if(!m) return null;
   const rootName=m[1].toUpperCase()+(m[2]==='#'?'♯':m[2]==='b'?'♭':'');
   let rest=s.slice(m[0].length).trim();
-  for(const [key,forms] of SUFFIX){
-    for(const f of forms){
-      if(f==='') continue;
-      if(rest.toLowerCase()===f.toLowerCase()) return {rootName,q:key};
-    }
-  }
+  // Case matters for exactly one pair: M7 is a major seventh and m7 is a minor
+  // one, and folding case made every m7 match maj7's M7 first. So try an exact
+  // match before a forgiving one, which keeps MIN7 and Maj7 working.
+  for(const [key,forms] of SUFFIX)
+    for(const f of forms)
+      if(f!=='' && rest===f) return {rootName,q:key};
+  for(const [key,forms] of SUFFIX)
+    for(const f of forms)
+      if(f!=='' && rest.toLowerCase()===f.toLowerCase()) return {rootName,q:key};
   if(rest==='') return {rootName,q:'major'};
   return null;
 }
@@ -644,6 +647,67 @@ function tourFor(rootPc){
   out.sort((a,b)=>a.low-b.low||a.shape.localeCompare(b.shape));
   return out;
 }
+// The lowest position at which THIS shape makes that chord, or null if it
+// cannot within the frets on show.
+function placeShapeOnChord(k,pc,shift){
+  const sh=SHAPES[k], I=INST[S.inst], cs=fretted(sh);
+  if(!cs.length||!I.strings[sh.root.c]) return null;
+  const sh7=7*(shift===undefined?0:shift);
+  const basePc=(I.strings[sh.root.c].midi+sh.root.f+sh7)%12;
+  const need=((pc-basePc)%12+12)%12;
+  const lo=Math.min(...cs.map(c=>sh.frets[c])), hi=Math.max(...cs.map(c=>sh.frets[c]));
+  for(let p=need-12;p<=S.frets;p+=12){
+    if(p+lo>=0&&p+hi<=S.frets) return p;
+  }
+  return null;
+}
+
+// The chord in the box is sticky: naming one keeps the shape you are holding
+// and slides it to where it makes that chord, rather than throwing you at
+// whichever shape happens to sit lowest. Changing shape keeps the chord too.
+// Walking between shapes is what the tour is for.
+function holdChord(pc,qual){
+  if(qual) S.qual=qual;
+  const p=placeShapeOnChord(S.shape,pc);
+  if(p===null) return false;
+  S.pos=p; S.shift=0;
+  clampShape();
+  // Asking for a seventh is a clear instruction, so if the window you are on
+  // is too narrow to carry one, open it up rather than quietly handing back a
+  // plain triad. A shape with no third anywhere still cannot, and the answer
+  // line says so.
+  if(seventhOf()!==null){
+    const v=shapeVoicing();
+    if(v && !v.sevenAdded){
+      const full={i:0,len:fretted(SHAPES[S.shape]).length};
+      const keep={...S.win};
+      S.win=full; clampShape();
+      const w=shapeVoicing();
+      if(!(w && w.sevenAdded)){ S.win=keep; clampShape(); }
+      else document.getElementById('viewSeg').dataset.sig='';
+    }
+  }
+  draw();
+  return true;
+}
+
+// Narrowing or widening the window re-clamps position and string shift, which
+// can drag the chord with it. Changing which strings you play should never
+// change what chord you are looking at, so put it back.
+function keepChord(targetPc){
+  const v=shapeVoicing();
+  if(!v||v.rootPc===targetPc) return;
+  for(const sh of [S.shift,0]){
+    const p=placeShapeOnChord(S.shape,targetPc,sh);
+    if(p===null) continue;
+    const before={pos:S.pos,shift:S.shift};
+    S.pos=p; S.shift=sh; clampShape();
+    const w=shapeVoicing();
+    if(w&&w.rootPc===targetPc) return;
+    S.pos=before.pos; S.shift=before.shift; clampShape();
+  }
+}
+
 // Land on a chord by name. The tour already knows every place it lives, so
 // naming one just means jumping to the first stop.
 function jumpToChord(pc,qual){
@@ -1099,6 +1163,15 @@ function syncSummaries(){
   document.getElementById('crsVal').textContent =
     S.shift===0?'as written':(S.shift>0?'+':'')+S.shift;
   document.getElementById('crsDown').disabled = S.shift<=R.sMin;
+  // Keep the chord box honest as a readout, but never fight the typist.
+  const box=document.getElementById('shapeChord');
+  if(document.activeElement!==box){
+    const cv=shapeVoicing();
+    box.value = cv ? cv.rootName+(cv.quality==='major'||cv.quality==='5' ? ''
+                               : cv.quality==='minor' ? 'm' : Q[cv.quality].lbl) : '';
+    box.style.borderColor='';
+  }
+
   const tv=shapeVoicing();
   const tour=tv?tourFor(tv.rootPc):[];
   const ti=tour.length?tourIndex(tour):-1;
@@ -1130,9 +1203,12 @@ function syncSummaries(){
         +`<small>${isEcon?'economy':courseNames(w)}</small></button>`;
     }).join('');
     seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{
+      const held=shapeVoicing();
       S.win={i:+b.dataset.i,len:+b.dataset.len};
       if(seventhOf()!==null && S.win.len<3) S.qual=minorBase()?'minor':'major';
-      clampShape(); draw(); strum();
+      clampShape();
+      if(held) keepChord(held.rootPc);
+      draw(); strum();
     });
   }
   seg.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',
@@ -1183,8 +1259,13 @@ function buildShapes(){
   box.innerHTML=SHAPE_ORDER.map(k=>
     `<button data-sh="${k}" aria-pressed="${k===S.shape}">${shapeLabel(k)}</button>`).join('');
   box.querySelectorAll('button').forEach(b=>b.onclick=()=>{
-    S.shape=b.dataset.sh; S.pos=0; S.shift=0;
-    S.win={i:0,len:fretted(SHAPES[S.shape]).length};
+    const held=shapeVoicing();
+    S.shape=b.dataset.sh; S.shift=0;
+    const nsh=SHAPES[S.shape];
+    S.win = nsh.econ ? {...nsh.econ} : {i:0,len:fretted(nsh).length};
+    // stay on the chord you were looking at, if this shape can reach it
+    const p = held ? placeShapeOnChord(S.shape,held.rootPc,0) : null;
+    S.pos = p===null ? 0 : p;
     document.getElementById('viewSeg').dataset.sig=''; clampShape();
     buildShapes(); draw(); strum();
   });
@@ -1254,7 +1335,9 @@ sc.oninput=()=>{
     // the shape engine handles these five; anything else keeps its root only
     const q=['major','minor','7','maj7','m7'].includes(parsed.q)?parsed.q:null;
     const L=parsed.rootName[0], alt=parsed.rootName.includes('♭')?-1:parsed.rootName.includes('♯')?1:0;
-    return jumpToChord((NAT[L]+alt+12)%12, q);
+    const pc=(NAT[L]+alt+12)%12;
+    // keep the shape you are on; only fall back to another if it cannot reach
+    return holdChord(pc,q) || jumpToChord(pc,q);
   })();
   sc.style.borderColor = (sc.value.trim()&&!ok) ? 'var(--wrong)' : '';
   if(ok) strum();
