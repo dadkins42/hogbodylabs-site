@@ -1,7 +1,7 @@
 // Bump CACHE to ship an update. Students install this at the start of class and
 // the room's wifi is not guaranteed, so everything needed to run is precached
 // on first load and served from the cache when the network is gone.
-const CACHE = 'fretboard-v1';
+const CACHE = 'fretboard-v2';
 const CORE = [
   './',
   './index.html',
