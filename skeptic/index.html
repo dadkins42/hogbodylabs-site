@@ -424,7 +424,7 @@
     <div class="container">
       <div class="section-title">Accuracy Leaderboard</div>
       <div class="stale-warning" id="staleWarning">
-        Data may be stale — last update was more than 24 hours ago.
+        Sensor may be offline — no reading in over an hour.
       </div>
       <div id="leaderboardContent">
         <div class="loading">Loading accuracy data…</div>
@@ -454,8 +454,8 @@
         </div>
         <div class="info-card">
           <div class="label">Readings / Day</div>
-          <div class="value" id="infoReadings">24</div>
-          <div class="sub">Polled every hour via GitHub Action</div>
+          <div class="value" id="infoReadings">144</div>
+          <div class="sub">Polled every 10 minutes</div>
         </div>
         <div class="info-card">
           <div class="label">Forecast Sources</div>
@@ -479,10 +479,10 @@
         <h3>How this works</h3>
         <ul>
           <li>Every day at 6 PM, we snapshot tomorrow's forecast from six weather sources</li>
-          <li>Every hour, we poll a Govee temperature sensor at one contributor's home</li>
-          <li>The next morning, we compute actual daily high/low from the 24 hourly sensor readings</li>
+          <li>Every 10 minutes, we poll a Govee temperature sensor at one contributor's home</li>
+          <li>After midnight, we compute the actual high/low for the local calendar day from ~144 sensor readings. Days with a gap of more than two hours are left out rather than guessed at</li>
           <li>We compare each source's prediction to the measured actuals and compute miss distance</li>
-          <li>All data is committed to a public GitHub repo — anyone can audit the numbers</li>
+          <li>Raw readings are published — anyone can audit the numbers (<a href="data/readings.json">today's readings</a>, <a href="data/status.json">collector status</a>)</li>
         </ul>
         <br>
         <h3>Why a physical sensor?</h3>
@@ -494,7 +494,7 @@
   <footer>
     <a href="/">HogBody Labs</a> · Skeptic Weather Accuracy Tracker
     <br><br>
-    <span style="color:#333;">Data auto-updated daily via GitHub Actions</span>
+    <span style="color:#333;">Updated every 10 minutes</span>
   </footer>
 
   <script>
@@ -524,29 +524,27 @@
     }
 
     function renderAll(data) {
-      // Staleness check
-      if (data.lastUpdated) {
-        const lastUpdate = new Date(data.lastUpdated);
-        const hoursAgo = (Date.now() - lastUpdate.getTime()) / (1000 * 60 * 60);
-        if (hoursAgo > 36) {
-          document.getElementById('staleWarning').style.display = 'block';
-        }
+      // Staleness check: the sensor is polled every 10 minutes
+      if (!data.lastReadingAt || (Date.now() - new Date(data.lastReadingAt).getTime()) > 60 * 60 * 1000) {
+        document.getElementById('staleWarning').style.display = 'block';
       }
 
       // Hero meta
-      if (data.totalDays) {
-        document.getElementById('metaDays').textContent = data.totalDays + ' days tracked';
-      }
-      if (data.totalReadings) {
-        document.getElementById('metaReadings').textContent = data.totalReadings.toLocaleString() + ' sensor readings';
+      document.getElementById('metaDays').textContent = data.daysWithData + ' days tracked';
+      document.getElementById('metaReadings').textContent = '';
+
+      if (!data.scorecard || data.scorecard.length === 0) {
+        renderNoData();
+        return;
       }
 
-      // Leaderboard
-      if (data.sources && data.sources.length > 0) {
-        renderLeaderboard(data.sources);
-      }
+      // Leaderboard: one combined miss per source (average of high and low)
+      renderLeaderboard(data.scorecard.map(s => ({
+        name: s.source,
+        avgMiss: (s.avgHighMiss + s.avgLowMiss) / 2,
+        within2pct: Math.round((s.highWithin2 + s.lowWithin2) / 2)
+      })));
 
-      // Daily results
       if (data.recentDays && data.recentDays.length > 0) {
         renderDaily(data.recentDays);
       }
@@ -596,8 +594,8 @@
     }
 
     function renderDaily(days) {
-      // Get all source names from the first day
-      const sourceNames = days[0].sources ? days[0].sources.map(s => s.name) : [];
+      // Columns = every source seen in the window, so rows stay aligned if one is missing
+      const sourceNames = [...new Set(days.flatMap(d => d.predictions.map(p => p.source)))];
 
       let html = `<div style="overflow-x:auto"><table class="daily-table"><thead><tr>
         <th>Date</th>
@@ -614,7 +612,9 @@
           <td>${formatDate(day.date)}</td>
           <td>${day.actualHigh}° / ${day.actualLow}°</td>`;
 
-        (day.sources || []).forEach(s => {
+        sourceNames.forEach(name => {
+          const s = day.predictions.find(p => p.source === name);
+          if (!s) { html += '<td>—</td>'; return; }
           const highMiss = s.highMiss;
           const lowMiss = s.lowMiss;
           const hColor = missColor(highMiss);
