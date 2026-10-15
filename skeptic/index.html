@@ -411,7 +411,7 @@
   <!-- HERO -->
   <div class="hero">
     <h1>Your forecast app has been <span class="accent">lying to you</span>.</h1>
-    <p>We track predictions from six weather sources against a physical sensor at a real location. No assumptions. No airport stations. Just data.</p>
+    <p>We track predictions from five weather sources against a physical sensor at a real location. No assumptions. No airport stations. Just data.</p>
     <div class="hero-meta" id="heroMeta">
       <span><span class="dot"></span> Data collection active</span>
       <span id="metaDays">—</span>
@@ -459,8 +459,8 @@
         </div>
         <div class="info-card">
           <div class="label">Forecast Sources</div>
-          <div class="value">6</div>
-          <div class="sub">Open-Meteo, NWS, OWM, WeatherAPI, Pirate, MET Norway</div>
+          <div class="value">5</div>
+          <div class="sub">Open-Meteo, NWS, WeatherAPI, Pirate, MET Norway</div>
         </div>
         <div class="info-card">
           <div class="label">Scoring</div>
@@ -478,7 +478,7 @@
       <div class="transparency">
         <h3>How this works</h3>
         <ul>
-          <li>Every day at 6 PM, we snapshot tomorrow's forecast from six weather sources</li>
+          <li>Every day at 6 PM, we snapshot tomorrow's forecast from five weather sources</li>
           <li>Every 10 minutes, we poll a Govee temperature sensor at one contributor's home</li>
           <li>After midnight, we compute the actual high/low for the local calendar day from ~144 sensor readings. Days with a gap of more than two hours are left out rather than guessed at</li>
           <li>We compare each source's prediction to the measured actuals and compute miss distance</li>
