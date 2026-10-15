@@ -126,10 +126,10 @@
 
 <div class="container">
   <h1>Skeptic Privacy Policy</h1>
-  <p class="updated">Last updated: March 15, 2026</p>
+  <p class="updated">Last updated: October 14, 2026</p>
 
   <div class="highlight">
-    <p>The short version: Skeptic does not collect, store, or transmit your personal data. Everything stays on your device.</p>
+    <p>The short version: Skeptic does not collect or store your personal data. Everything stays on your device.</p>
   </div>
 
   <h2>What Skeptic Does</h2>
@@ -138,19 +138,18 @@
   <h2>Location Data</h2>
   <p>Skeptic requests your location to look up weather forecasts for where you are. Your location is:</p>
   <ul>
-    <li>Used only on your device to make weather API requests</li>
-    <li>Never sent to HogBody Labs</li>
-    <li>Never stored on any server</li>
+    <li>Used only to make weather requests</li>
+    <li>Never stored on any HogBody Labs server, and never logged</li>
     <li>Never shared with anyone</li>
   </ul>
   <p>You can deny location access and manually add locations instead.</p>
 
   <h2>Weather Data Sources</h2>
-  <p>When you use Skeptic, your device contacts these weather services directly to fetch forecasts:</p>
+  <p>When you use Skeptic, your device contacts these weather services to fetch forecasts. All except Apple WeatherKit are contacted directly:</p>
   <ul>
     <li>Open-Meteo (no API key required)</li>
     <li>National Weather Service / NWS (no API key required)</li>
-    <li>Apple WeatherKit</li>
+    <li>Apple WeatherKit — requested through a HogBody Labs server so that our WeatherKit key never ships inside the app. Your device sends only coordinates rounded to about 1 km; the server forwards them to Apple and passes back the forecast. Nothing about the request is stored or logged, apart from a short-lived (10-minute) cache of the forecast for that 1 km area.</li>
     <li>MET Norway (no API key required)</li>
     <li>OpenWeatherMap (your API key)</li>
     <li>WeatherAPI.com (your API key)</li>
@@ -174,7 +173,7 @@
     <li>Settings and preferences</li>
     <li>API keys (stored in Keychain)</li>
   </ul>
-  <p>No data is sent to HogBody Labs servers. There is no cloud sync, no analytics, and no telemetry.</p>
+  <p>Apart from the rounded coordinates used for Apple WeatherKit requests (above), no data is sent to HogBody Labs servers. There is no cloud sync, no analytics, and no telemetry.</p>
 
   <h2>No Accounts</h2>
   <p>Skeptic does not require or offer account creation. There is no sign-up, no login, and no email collection.</p>
