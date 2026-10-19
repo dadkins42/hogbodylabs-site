@@ -126,10 +126,10 @@
 
 <div class="container">
   <h1>Skeptic Privacy Policy</h1>
-  <p class="updated">Last updated: October 14, 2026</p>
+  <p class="updated">Last updated: October 18, 2026</p>
 
   <div class="highlight">
-    <p>The short version: Skeptic does not collect or store your personal data. Everything stays on your device.</p>
+    <p>The short version: Skeptic has no accounts, ads, analytics or tracking. The only thing it stores on our server is what you choose to set up for accuracy tracking (below) — kept private to you, never shared, and deleted on request.</p>
   </div>
 
   <h2>What Skeptic Does</h2>
@@ -139,7 +139,7 @@
   <p>Skeptic requests your location to look up weather forecasts for where you are. Your location is:</p>
   <ul>
     <li>Used only to make weather requests</li>
-    <li>Never stored on any HogBody Labs server, and never logged</li>
+    <li>Never stored on any HogBody Labs server or logged — except the coordinates of a location where you set up accuracy tracking (see Accuracy Tracking)</li>
     <li>Never shared with anyone</li>
   </ul>
   <p>You can deny location access and manually add locations instead.</p>
@@ -163,17 +163,26 @@
     <li><strong>Govee</strong> — WiFi thermometer/hygrometer (your API key)</li>
     <li><strong>Davis WeatherLink</strong> — Personal weather station (your API key and secret)</li>
   </ul>
-  <p>These connections are optional. If configured, your device contacts these services directly using credentials you provide. HogBody Labs never receives sensor data or API credentials.</p>
+  <p>These connections are optional.</p>
+
+  <h2>Accuracy Tracking</h2>
+  <p>When you add a ground truth (a Govee or Davis sensor, or an NWS station) to a location, Skeptic tracks forecast accuracy for you around the clock, even when the app is closed. To do that, the app sends our server:</p>
+  <ul>
+    <li>The ground truth's details: the sensor's credentials (Govee API key and device; Davis API key, secret and station) or the NWS station you chose</li>
+    <li>That location's name and coordinates</li>
+    <li>Optionally, your WeatherAPI.com and Pirate Weather keys, so those sources are included</li>
+  </ul>
+  <p>The server then reads your sensor every 10 minutes, saves each evening's forecasts for that location, and scores them. Credentials are encrypted at rest. Your readings and results are shown only to devices that present the same sensor's credentials (or, for an NWS station, the same station and location) — never to anyone else, and never published. Tracking pauses if no device has asked for the results in 60 days.</p>
+  <p>To delete your accuracy data, email <a href="mailto:support@hogbodylabs.com">support@hogbodylabs.com</a> and we'll remove the ground truth and everything recorded for it.</p>
 
   <h2>Data Storage</h2>
-  <p>All app data is stored locally on your device:</p>
+  <p>Everything else is stored only on your device:</p>
   <ul>
     <li>Saved locations</li>
-    <li>Forecast snapshots and accuracy history</li>
     <li>Settings and preferences</li>
     <li>API keys (stored in Keychain)</li>
   </ul>
-  <p>Apart from the rounded coordinates used for Apple WeatherKit requests (above), no data is sent to HogBody Labs servers. There is no cloud sync, no analytics, and no telemetry.</p>
+  <p>Apart from accuracy tracking and the rounded coordinates used for Apple WeatherKit requests (both above), no data is sent to HogBody Labs servers. There is no analytics and no telemetry.</p>
 
   <h2>No Accounts</h2>
   <p>Skeptic does not require or offer account creation. There is no sign-up, no login, and no email collection.</p>
